@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +49,7 @@ public class RunningFragment extends Fragment implements INoteListEvent {
 
     private void initRecyclerView() {
         rv_ruuning_category.setHasFixedSize(true);
-        rv_ruuning_category.setLayoutManager(new LinearLayoutManager(getContext()));
+        rv_ruuning_category.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
         rv_ruuning_category.setAdapter(new RunningAdapter(getContext()));
     }
 
