@@ -1,6 +1,7 @@
 package com.wxj.mdnote.model.entry;
 
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 /**
  * ====================
@@ -13,7 +14,8 @@ import io.realm.RealmObject;
  * @github https://github.com/wangxujie
  * @blog http://wangxujie.github.io
  */
-public class Category  extends RealmObject {
+public class Category  extends BaseRealm {
+    @PrimaryKey
     private String categoryTitle; //title
     private String categorySymbol;//  symbol ##  @@ %%...
 
@@ -35,4 +37,5 @@ public class Category  extends RealmObject {
     public void setCategorySymbol(String categorySymbol) {
         this.categorySymbol = categorySymbol;
     }
+
 }
