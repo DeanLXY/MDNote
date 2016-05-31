@@ -4,6 +4,8 @@ import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 
 import android.support.v4.app.Fragment;
@@ -19,6 +21,8 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import com.konifar.fab_transformation.FabTransformation;
+import com.wxj.mdnote.fragment.RunningAdapter;
 import com.wxj.mdnote.fragment.RunningFragment;
 import com.wxj.mdnote.presenter.INoteListEvent;
 
@@ -26,11 +30,10 @@ import io.realm.Realm;
 
 public class NoteListActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private SectionsPagerAdapter mSectionsPagerAdapter;
-
-    private ViewPager mViewPager;
-    private RunningFragment fragment;
     private FloatingActionButton fab;
+    private RecyclerView rv_ruuning_category;
+    private View overlay;
+    private RecyclerView rv_running_task;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,54 +45,32 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
-
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
-
         fab = (FloatingActionButton) findViewById(R.id.fab);
-        fragment = new RunningFragment();
+
+
+        rv_running_task = (RecyclerView) (RecyclerView) findViewById(R.id.rv_running_task);
+        rv_ruuning_category = (RecyclerView) findViewById(R.id.rv_ruuning_category);
+        overlay = findViewById(R.id.overlay);
+        initRecyclerView();
+        overlay.setOnClickListener(this);
         fab.setOnClickListener(this);
     }
 
 
-
-    @Override
-    public void onClick(View v) {
-        ((INoteListEvent)fragment).onFabClick(fab);
+    private void initRecyclerView() {
+        rv_ruuning_category.setHasFixedSize(true);
+        rv_ruuning_category.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        rv_ruuning_category.setAdapter(new RunningAdapter(this));
     }
 
 
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+    @Override
+    public void onClick(View v) {
+        if (v == overlay) {
+            FabTransformation.with(fab).setOverlay(overlay).transformFrom(rv_ruuning_category);
+        } else if (v == fab) {
 
-        public SectionsPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return new RunningFragment();
-        }
-
-        @Override
-        public int getCount() {
-            return 2;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return getString(R.string.title_ing);
-                case 1:
-                    return getString(R.string.title_done);
-
-            }
-            return null;
+            FabTransformation.with(fab).setOverlay(overlay).transformTo(rv_ruuning_category);
         }
     }
 }
