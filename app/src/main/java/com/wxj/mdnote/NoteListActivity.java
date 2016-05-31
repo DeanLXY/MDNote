@@ -24,11 +24,13 @@ import com.wxj.mdnote.presenter.INoteListEvent;
 
 import io.realm.Realm;
 
-public class NoteListActivity extends AppCompatActivity  {
+public class NoteListActivity extends AppCompatActivity implements View.OnClickListener {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
     private ViewPager mViewPager;
+    private RunningFragment fragment;
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +51,9 @@ public class NoteListActivity extends AppCompatActivity  {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fragment = new RunningFragment();
+        fab.setOnClickListener(this);
     }
 
 
@@ -69,6 +72,11 @@ public class NoteListActivity extends AppCompatActivity  {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        ((INoteListEvent)fragment).onFabClick(fab);
     }
 
 

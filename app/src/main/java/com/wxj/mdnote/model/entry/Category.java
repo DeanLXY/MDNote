@@ -2,6 +2,8 @@ package com.wxj.mdnote.model.entry;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
+import io.realm.annotations.RealmClass;
+import io.realm.annotations.RealmModule;
 
 /**
  * ====================
@@ -14,7 +16,9 @@ import io.realm.annotations.PrimaryKey;
  * @github https://github.com/wangxujie
  * @blog http://wangxujie.github.io
  */
-public class Category  extends BaseRealm {
+
+@RealmClass
+public class Category  extends RealmObject {
     @PrimaryKey
     private String categoryTitle; //title
     private String categorySymbol;//  symbol ##  @@ %%...

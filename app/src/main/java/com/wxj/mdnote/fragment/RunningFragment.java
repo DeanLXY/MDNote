@@ -54,7 +54,7 @@ public class RunningFragment extends Fragment implements View.OnClickListener,IN
 
     @Override
     public void onClick(View v) {
-        FabTransformation.with(fab).setOverlay(overlay).transformTo(rv_ruuning_category);
+        FabTransformation.with(v).setOverlay(overlay).transformTo(rv_ruuning_category);
     }
 
     @Override

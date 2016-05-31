@@ -20,7 +20,7 @@ import io.realm.RealmObject;
  * @blog http://wangxujie.github.io
  */
 // Model: realm operate object
-public class RealmDataSource<Model extends RealmObject> {
+public class RealmDataSource<Model> {
     private RealmDataSource() {
     }
 
@@ -47,9 +47,9 @@ public class RealmDataSource<Model extends RealmObject> {
         }
 
 
-        /**
+       /* *//**
          * C
-         */
+         *//*
         public Builder insert(Model model) {
             realm.beginTransaction();
             realm.copyToRealm(model);
@@ -57,9 +57,9 @@ public class RealmDataSource<Model extends RealmObject> {
             return this;
         }
 
-        /**
+        *//**
          * D
-         */
+         *//*
         public Builder delete(Model model) {
             realm.where(model.getClass()).equalTo("", "").findFirst();
             realm.beginTransaction();
@@ -69,6 +69,7 @@ public class RealmDataSource<Model extends RealmObject> {
             return this;
         }
 
+*/
 
     }
 }
