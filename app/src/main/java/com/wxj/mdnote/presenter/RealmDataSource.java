@@ -20,56 +20,24 @@ import io.realm.RealmObject;
  * @blog http://wangxujie.github.io
  */
 // Model: realm operate object
-public class RealmDataSource<Model> {
-    private RealmDataSource() {
+public class RealmDataSource {
+    private final Realm realm;
+
+    private RealmDataSource(Context context) {
+        RealmConfiguration config = new RealmConfiguration.Builder(context)
+                .name(IConstant.REALM_DB)
+                .build();
+        realm = Realm.getInstance(config);
     }
 
-    private static final RealmDataSource DEFAULT = new RealmDataSource();
+    private static RealmDataSource DEFAULT;
 
-    public static RealmDataSource getDefault() {
+    public static synchronized RealmDataSource getDefault(Context context) {
+        if (DEFAULT == null) {
+            DEFAULT = new RealmDataSource(context);
+        }
         return DEFAULT;
     }
 
-    public class Builder {
-        private Context context;
-        private final Realm realm;
 
-        public Builder(Context context) {
-            this.context = context;
-            RealmConfiguration config = new RealmConfiguration.Builder(context)
-                    .name(IConstant.REALM_DB)
-                    .build();
-            realm = Realm.getInstance(config);
-        }
-
-        public RealmDataSource build() {
-            return RealmDataSource.getDefault();
-        }
-
-
-       /* *//**
-         * C
-         *//*
-        public Builder insert(Model model) {
-            realm.beginTransaction();
-            realm.copyToRealm(model);
-            realm.commitTransaction();
-            return this;
-        }
-
-        *//**
-         * D
-         *//*
-        public Builder delete(Model model) {
-            realm.where(model.getClass()).equalTo("", "").findFirst();
-            realm.beginTransaction();
-//            realm.delete(model.getClass());
-            model.deleteFromRealm();
-            realm.commitTransaction();
-            return this;
-        }
-
-*/
-
-    }
 }

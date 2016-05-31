@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.wxj.mdnote.R;
+
 /**
  * ====================
  * 版权所有 违法必究
@@ -17,8 +19,8 @@ import android.widget.TextView;
  * @github https://github.com/wangxujie
  * @blog http://wangxujie.github.io
  */
-public class RunningAdapter extends RecyclerView.Adapter<RunningAdapter.RunningViewHolder>  {
-private Context context;
+public class RunningAdapter extends RecyclerView.Adapter<RunningAdapter.RunningViewHolder> {
+    private Context context;
 
     public RunningAdapter(Context context) {
         this.context = context;
@@ -27,13 +29,13 @@ private Context context;
 
     @Override
     public RunningViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = View.inflate(context, android.R.layout.simple_list_item_1, null);
+        View view = View.inflate(context, R.layout.item_category, null);
         return new RunningViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(RunningViewHolder holder, int position) {
-        holder.textView.setText("position"+position);
+        holder.textView.setText("position" + position);
     }
 
     @Override
@@ -47,7 +49,7 @@ private Context context;
 
         public RunningViewHolder(View view) {
             super(view);
-            textView = (TextView) view.findViewById(android.R.id.text1);
+            textView = (TextView) view.findViewById(R.id.tv_category_symbol);
         }
     }
 }

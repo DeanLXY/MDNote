@@ -17,7 +17,7 @@ import com.wxj.mdnote.presenter.INoteListEvent;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RunningFragment extends Fragment implements View.OnClickListener,INoteListEvent {
+public class RunningFragment extends Fragment implements INoteListEvent {
 
 
     private View view;
@@ -52,10 +52,6 @@ public class RunningFragment extends Fragment implements View.OnClickListener,IN
         rv_ruuning_category.setAdapter(new RunningAdapter(getContext()));
     }
 
-    @Override
-    public void onClick(View v) {
-        FabTransformation.with(v).setOverlay(overlay).transformTo(rv_ruuning_category);
-    }
 
     @Override
     public void onFabClick(FloatingActionButton fab) {
