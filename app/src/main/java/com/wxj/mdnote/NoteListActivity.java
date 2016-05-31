@@ -22,6 +22,8 @@ import android.widget.TextView;
 import com.wxj.mdnote.fragment.RunningFragment;
 import com.wxj.mdnote.presenter.INoteListEvent;
 
+import io.realm.Realm;
+
 public class NoteListActivity extends AppCompatActivity  {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
@@ -32,6 +34,9 @@ public class NoteListActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_list);
+
+        // ralm
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
