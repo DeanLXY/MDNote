@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.wxj.mdnote.NoteListActivity">
     <item
-        android:icon="@drawable/abc_ic_search_api_mtrl_alpha"
+        android:icon="@drawable/ic_search_black_24dp"
         android:title="@string/action_search"
         app:actionViewClass="android.support.v7.widget.SearchView"
 
@@ -12,7 +12,8 @@
         android:id="@+id/action_userinfo"
         android:orderInCategory="100"
         android:title="@string/action_userinfo"
-        app:showAsAction="never" />
+        android:icon="@drawable/ic_action_account_svg"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
