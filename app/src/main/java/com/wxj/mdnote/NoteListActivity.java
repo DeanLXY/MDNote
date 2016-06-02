@@ -26,10 +26,11 @@ import com.konifar.fab_transformation.FabTransformation;
 import com.wxj.mdnote.fragment.RunningAdapter;
 import com.wxj.mdnote.fragment.RunningFragment;
 import com.wxj.mdnote.presenter.INoteListEvent;
+import com.wxj.mdnote.view.INoteListView;
 
 import io.realm.Realm;
 
-public class NoteListActivity extends AppCompatActivity implements View.OnClickListener {
+public class NoteListActivity extends AppCompatActivity implements View.OnClickListener,INoteListView {
 
     private FloatingActionButton fab;
     private RecyclerView rv_ruuning_category;
@@ -87,5 +88,20 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
 
             FabTransformation.with(fab).setOverlay(overlay).transformTo(rv_ruuning_category);
         }
+    }
+
+    @Override
+    public void createNewCategory(String title, String des, String path) {
+
+    }
+
+    @Override
+    public void onStartSearch(String keyword) {
+
+    }
+
+    @Override
+    public void createNewNote() {
+
     }
 }
