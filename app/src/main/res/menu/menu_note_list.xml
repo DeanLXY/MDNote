@@ -3,13 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.wxj.mdnote.NoteListActivity">
     <item
-        android:actionViewClass="android.support.v7.widget.SearchView"
         android:icon="@drawable/abc_ic_search_api_mtrl_alpha"
         android:title="@string/action_search"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+
         app:showAsAction="ifRoom"></item>
+    <item
+        android:id="@+id/action_userinfo"
+        android:orderInCategory="100"
+        android:title="@string/action_userinfo"
+        app:showAsAction="never" />
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
+
 </menu>
