@@ -1,12 +1,13 @@
 package com.wxj.mdnote.model.entry;
 
+import com.wxj.mdnote.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.RealmClass;
-import io.realm.annotations.RealmModule;
 
 /**
  * ====================
@@ -23,45 +24,57 @@ import io.realm.annotations.RealmModule;
 @RealmClass
 public class Category extends RealmObject {
     @PrimaryKey
-    private String categoryTitle; //title
-    private String categorySymbol;//  symbol ##  @@ %%...
+    private String title; //title
+    private String symbol;//  symbol ##  @@ %%...
+    private Integer bg;
+
+    public Integer getBg() {
+        return bg;
+    }
+
+    public void setBg(Integer bg) {
+        this.bg = bg;
+    }
 
     public Category() {
     }
 
-    public String getCategoryTitle() {
-        return categoryTitle;
+    public String getTitle() {
+        return title;
     }
 
-    public void setCategoryTitle(String categoryTitle) {
-        this.categoryTitle = categoryTitle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getCategorySymbol() {
-        return categorySymbol;
+    public String getSymbol() {
+        return symbol;
     }
 
-    public void setCategorySymbol(String categorySymbol) {
-        this.categorySymbol = categorySymbol;
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
     }
 
-    public Category(String categoryTitle) {
-        this.categoryTitle = categoryTitle;
-        this.categorySymbol = "##$1%s&&";
+    public Category(String title,Integer bg) {
+        this.title = title;
+        this.symbol = "##$1%s##";
+        this.bg = bg;
     }
 
-    class Default {
-        private List<Category> categories = new ArrayList<>();
+    @Override
+    public String toString() {
+        return String.format(this.symbol,this.title);
+    }
 
-        public Default() {
-            categories.add(new Category("笔记"));
-            categories.add(new Category("记录"));
-            categories.add(new Category("快速回忆"));
-            categories.add(new Category("电话号码"));
+    public static class Default {
+        public static List<Category> categories = new ArrayList<>();
+
+       static  {
+            categories.add(new Category("笔记-文本", R.drawable.accountbook_shortcut_standard));
+            categories.add(new Category("笔记-图片", R.drawable.accountbook_shortcut_travel));
+            categories.add(new Category("笔记-富媒体", R.drawable.accountbook_shortcut_benefit));
+            categories.add(new Category("笔记-电话号码", R.drawable.accountbook_shortcut_car));
         }
 
-        public List<Category> getCategories() {
-            return categories;
-        }
     }
 }

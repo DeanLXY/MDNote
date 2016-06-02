@@ -4,9 +4,12 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.wxj.mdnote.R;
+import com.wxj.mdnote.model.entry.Category;
 
 /**
  * ====================
@@ -35,21 +38,25 @@ public class RunningAdapter extends RecyclerView.Adapter<RunningAdapter.RunningV
 
     @Override
     public void onBindViewHolder(RunningViewHolder holder, int position) {
-        holder.textView.setText("position" + position);
+        Category category = Category.Default.categories.get(position);
+        holder.textView.setText( category.toString());
+        holder.ivIcon.setImageResource(category.getBg());
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return Category.Default.categories.size();
     }
 
     public class RunningViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView textView;
+        private final ImageView ivIcon;
 
         public RunningViewHolder(View view) {
             super(view);
             textView = (TextView) view.findViewById(R.id.tv_category_symbol);
+            ivIcon = (ImageView) view.findViewById(R.id.iv_category_icon);
         }
     }
 }

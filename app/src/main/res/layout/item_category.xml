@@ -10,10 +10,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:foreground="?android:attr/selectableItemBackground"
         android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardCornerRadius="5dp"
         app:cardElevation="3dp"
-        app:cardCornerRadius="5dp">
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true">
+
+        <com.wxj.mdnote.view.Ratiolayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_account_category_cover" />
+        </com.wxj.mdnote.view.Ratiolayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -25,7 +38,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:src="@mipmap/ic_launcher" />
+
+                android:src="@drawable/accountbook_shortcut_benefit" />
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -36,16 +50,14 @@
 
                 <TextView
                     android:id="@+id/tv_category_symbol"
+                    style="?attr/textAppearanceListItem"
+                    android:textColor="#fff"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="##标记##" />
 
             </ScrollView>
-            <ImageView
-                android:layout_alignParentRight="true"
-                android:layout_width="wrap_content"
-                android:src="@drawable/abc_ic_menu_moreoverflow_mtrl_alpha"
-                android:layout_height="wrap_content" />
+
             <android.support.percent.PercentFrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
