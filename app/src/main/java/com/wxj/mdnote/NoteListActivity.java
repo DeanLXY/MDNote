@@ -1,37 +1,24 @@
 package com.wxj.mdnote;
 
 import android.content.Intent;
-import android.support.design.widget.TabLayout;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
-
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-
-import android.widget.TextView;
 
 import com.konifar.fab_transformation.FabTransformation;
+import com.roughike.bottombar.BottomBar;
+import com.roughike.bottombar.BottomBarTab;
 import com.wxj.mdnote.fragment.RunningAdapter;
-import com.wxj.mdnote.fragment.RunningFragment;
 import com.wxj.mdnote.model.entry.Account;
-import com.wxj.mdnote.presenter.INoteListEvent;
 import com.wxj.mdnote.presenter.NoteListPresenter;
 import com.wxj.mdnote.view.INoteListView;
-
-import io.realm.Realm;
 
 public class NoteListActivity extends AppCompatActivity implements View.OnClickListener, INoteListView, View.OnLongClickListener {
 
@@ -40,6 +27,8 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
     private View overlay;
     private RecyclerView rv_running_task;
     private NoteListPresenter presenter;
+    private BottomBar mBottomBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +50,35 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
         overlay.setOnClickListener(this);
         fab.setOnClickListener(this);
         fab.setOnLongClickListener(this);
+
+
+        mBottomBar = BottomBar.attach(this, savedInstanceState);
+
+        // bottombar
+        mBottomBar.setItems(
+                new BottomBarTab(R.drawable.ic_restore_black_24dp, "Recents"),
+                new BottomBarTab(R.drawable.ic_person_black_24dp, "Favorites"),
+                new BottomBarTab(R.drawable.ic_person_black_24dp, "Favorites"),
+                new BottomBarTab(R.drawable.ic_done_black_24dp, "Nearby")
+        );
+        mBottomBar.mapColorForTab(0, ContextCompat.getColor(this, R.color.colorAccent));
+        mBottomBar.mapColorForTab(1, 0xFFFF0000);
+        mBottomBar.mapColorForTab(2, "#7B1FA2");
+        mBottomBar.mapColorForTab(3, 0xFFFF0000);
+
+//         Instead of attach(), use attachShy():
+//        mBottomBar = BottomBar.attachShy((CoordinatorLayout) findViewById(R.id.main_content),
+//                rv_running_task, savedInstanceState);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        // Necessary to restore the BottomBar's state, otherwise we would
+        // lose the current tab on orientation change.
+        mBottomBar.onSaveInstanceState(outState);
+
     }
 
 
