@@ -11,14 +11,31 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".NoteListActivity"
-            android:screenOrientation="portrait"
             android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".CategoryCreateActivity"
+            android:label="@string/app_category_create"
+            android:parentActivityName=".NoteListActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".NoteListActivity" />
+        </activity>
+        <activity
+            android:name=".NoteCreateActivity"
+
+            android:parentActivityName=".NoteListActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".NoteListActivity" />
         </activity>
     </application>
 

@@ -1,4 +1,4 @@
-package com.wxj.mdnote.presenter;
+package com.wxj.mdnote.model.entry;
 
 /**
  * ====================
@@ -11,6 +11,6 @@ package com.wxj.mdnote.presenter;
  * @github https://github.com/wangxujie
  * @blog http://wangxujie.github.io
  */
-public class INoteListPresenter {
-    public
+public class Account {
+    // 帐号信息 同步功能使用
 }

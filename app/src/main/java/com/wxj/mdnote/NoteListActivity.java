@@ -1,5 +1,6 @@
 package com.wxj.mdnote;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -25,17 +26,20 @@ import android.widget.TextView;
 import com.konifar.fab_transformation.FabTransformation;
 import com.wxj.mdnote.fragment.RunningAdapter;
 import com.wxj.mdnote.fragment.RunningFragment;
+import com.wxj.mdnote.model.entry.Account;
 import com.wxj.mdnote.presenter.INoteListEvent;
+import com.wxj.mdnote.presenter.NoteListPresenter;
 import com.wxj.mdnote.view.INoteListView;
 
 import io.realm.Realm;
 
-public class NoteListActivity extends AppCompatActivity implements View.OnClickListener,INoteListView {
+public class NoteListActivity extends AppCompatActivity implements View.OnClickListener, INoteListView, View.OnLongClickListener {
 
     private FloatingActionButton fab;
     private RecyclerView rv_ruuning_category;
     private View overlay;
     private RecyclerView rv_running_task;
+    private NoteListPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +47,7 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_note_list);
 
         // ralm
-
+        presenter = new NoteListPresenter(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -56,6 +60,7 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
         initRecyclerView();
         overlay.setOnClickListener(this);
         fab.setOnClickListener(this);
+        fab.setOnLongClickListener(this);
     }
 
 
@@ -80,6 +85,7 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
 
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     public void onClick(View v) {
         if (v == overlay) {
@@ -91,8 +97,8 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
     }
 
     @Override
-    public void createNewCategory(String title, String des, String path) {
-
+    public void createNewCategory() {
+        startActivity(new Intent(this, CategoryCreateActivity.class));
     }
 
     @Override
@@ -101,7 +107,21 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
     }
 
     @Override
-    public void createNewNote() {
+    public void requestUserInfo(Account account) {
 
+    }
+
+    @Override
+    public void createNewNote() {
+        startActivity(new Intent(getBaseContext(), NoteCreateActivity.class));
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        if (v == fab) {
+//            presenter.createNewCategory();
+            presenter.createNewNote();
+        }
+        return false;
     }
 }

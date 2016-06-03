@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MDNote</string>
+    <string name="app_name">天天记笔记</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_ing">进行中</string>
@@ -9,4 +9,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="action_search">搜索</string>
     <string name="action_userinfo">用户</string>
+    <string name="app_category_create">新分类</string>
+    <string name="txt_note_subject_hint">标题</string>
 </resources>
