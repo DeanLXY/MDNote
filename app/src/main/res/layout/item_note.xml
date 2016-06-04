@@ -3,51 +3,67 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
-    android:padding="8dp"
-    app:cardCornerRadius="5dp"
-    app:cardElevation="3dp"
+    app:cardCornerRadius="2dp"
+    app:cardElevation="4dp"
     app:cardPreventCornerOverlap="true"
     app:cardUseCompatPadding="true">
 
-
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/activity_horizontal_margin">
+        android:layout_height="wrap_content">
 
-        <com.wxj.mdnote.view.Ratiolayout
+
+        <ImageView
+            android:id="@+id/iv_category_icon"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@drawable/accountbook_shortcut_benefit" />
 
-            <ImageView
-                android:id="@+id/iv_category_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:src="@drawable/accountbook_shortcut_benefit" />
-        </com.wxj.mdnote.view.Ratiolayout>
 
         <ScrollView
+            android:id="@+id/sv_note_info"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/iv_category_icon">
 
-            <TextView
-                android:id="@+id/tv_category_symbol"
-                style="?attr/textAppearanceListItem"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="##标记##"
-                android:textColor="#fff" />
+                android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/tv_note_subject"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_note_last_modify_time"
+                    style="?attr/textAppearanceListItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_txt_subtitle" />
+            </LinearLayout>
         </ScrollView>
+
+        <View
+            android:id="@+id/view_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/sv_note_info"
+            android:layout_toRightOf="@+id/iv_category_icon"
+            android:background="@color/color_view_line" />
 
         <android.support.percent.PercentFrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/iv_category_icon">
+            android:layout_below="@id/view_line"
+            android:layout_toRightOf="@+id/iv_category_icon">
 
             <TextView
                 android:id="@+id/et_category_content"

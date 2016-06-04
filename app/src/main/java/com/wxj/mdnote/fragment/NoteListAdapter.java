@@ -34,7 +34,7 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.NoteLi
 
     @Override
     public NoteListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = View.inflate(context, R.layout.item_category, null);
+        View view = View.inflate(context, R.layout.item_note, null);
 
         return new NoteListViewHolder(view);
     }
@@ -42,9 +42,14 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.NoteLi
     @Override
     public void onBindViewHolder(NoteListViewHolder holder, int position) {
         Note note = all.get(position);
-        holder.tvSymble.setText(note.getSubject());
+        holder.tvSubject.setText(note.getSubject());
         holder.tvContent.setText(note.getContent());
+        if (note.getLastModifyTime() == null || "".equals(note.getLastModifyTime())){
+            holder.tvLastModifyTime.setText(note.getCreateTime());
+        }else{
+            holder.tvLastModifyTime.setText(note.getLastModifyTime());
 
+        }
     }
 
     @Override
@@ -57,13 +62,15 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.NoteLi
 
 
     public class NoteListViewHolder extends RecyclerView.ViewHolder {
-        private final TextView tvSymble;
+        private final TextView tvSubject;
         private final ImageView ivIcon;
         private final TextView tvContent;
+        private final TextView tvLastModifyTime;
 
         public NoteListViewHolder(View view) {
             super(view);
-            tvSymble = (TextView) view.findViewById(R.id.tv_category_symbol);
+            tvSubject = (TextView) view.findViewById(R.id.tv_note_subject);
+            tvLastModifyTime = (TextView) view.findViewById(R.id.tv_note_last_modify_time);
             tvContent = (TextView) view.findViewById(R.id.et_category_content);
             ivIcon = (ImageView) view.findViewById(R.id.iv_category_icon);
         }

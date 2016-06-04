@@ -91,7 +91,7 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
     private void initRunningTaskRecyclerView() {
         noteListAll = presenter.findAll();
         rv_running_task.setHasFixedSize(true);
-        rv_running_task.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        rv_running_task.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
         noteListAdapter = new NoteListAdapter(this, noteListAll);
         rv_running_task.setAdapter(noteListAdapter);
     }
