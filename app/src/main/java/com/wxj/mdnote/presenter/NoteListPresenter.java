@@ -1,6 +1,7 @@
 package com.wxj.mdnote.presenter;
 
 import com.wxj.mdnote.model.NoteMode;
+import com.wxj.mdnote.model.OnRealmChangeListener;
 import com.wxj.mdnote.model.entry.Note;
 import com.wxj.mdnote.view.INoteListView;
 
@@ -28,15 +29,18 @@ public class NoteListPresenter {
 
 
     public List<Note> findAll(){
-        return mode.findAll();
+        return mode.findAll(new OnRealmChangeListener<List<Note>>() {
+            @Override
+            public void onChange(List<Note> notes) {
+                view.notifyDataSetChange();
+            }
+        });
     }
 
-    /**
-     * realm 中数据发发送改变的时候调用
-     */
-    public void onChange(){
-
+    public void clear(){
+        mode.clear();
     }
+
 
 
 

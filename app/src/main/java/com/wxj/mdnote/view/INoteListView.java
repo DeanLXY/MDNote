@@ -1,6 +1,10 @@
 package com.wxj.mdnote.view;
 
+import com.wxj.mdnote.model.OnRealmChangeListener;
 import com.wxj.mdnote.model.entry.Account;
+import com.wxj.mdnote.model.entry.Note;
+
+import java.util.List;
 
 /**
  * ====================
@@ -25,5 +29,11 @@ public interface INoteListView {
     //4.创建新笔记
     public void createNewNote();
 
-    //
+//    /*数据变化的监听*/
+//    OnRealmChangeListener<List<Note>> getOnRealmChangeListener();
+
+    /**
+     * 监听移除 直接更新
+     */
+    void notifyDataSetChange();
 }

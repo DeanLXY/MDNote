@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.Realm;
+import io.realm.RealmChangeListener;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
 import io.realm.Sort;
@@ -27,7 +28,7 @@ public class NoteMode {
 
     //  笔记的业务类
 
-    public void createNewNote(Note note){
+    public void createNewNote(Note note) {
         RealmDataSource dataSource = RealmDataSource.getDefault(BaseApplication.getContext());
         Realm realm = dataSource.getRealm();
         realm.beginTransaction();
@@ -37,17 +38,41 @@ public class NoteMode {
 
     /**
      * 查询所有笔记信息
+     *
      * @return
      */
-    public List<Note> findAll(){
+    public List<Note> findAll(final OnRealmChangeListener<List<Note>> changeListener) {
         RealmDataSource dataSource = RealmDataSource.getDefault(BaseApplication.getContext());
         Realm realm = dataSource.getRealm();
+        realm.addChangeListener(new RealmChangeListener<Realm>() {
+            @Override
+            public void onChange(Realm element) {
+                if (changeListener != null) {
+                    RealmQuery<Note> realmQuery = element.where(Note.class);
+                    RealmResults<Note> all = realmQuery.findAllSorted("createTime", Sort.DESCENDING);
+                    List<Note> notes = null;
+                    if (all == null || all.size() == 0) {
+                        notes = new ArrayList<>();
+                    } else {
+                        notes = all.subList(0, all.size() - 1);
+                    }
+                    changeListener.onChange(notes);
+                }
+            }
+        });
         RealmQuery<Note> realmQuery = realm.where(Note.class);
         RealmResults<Note> all = realmQuery.findAllSorted("createTime", Sort.DESCENDING);
 
-        if (all == null || all.size() == 0){
+        if (all == null || all.size() == 0) {
             return new ArrayList<>();
         }
-        return all.subList(0,all.size()-1);
+        return all.subList(0, all.size() - 1);
+    }
+
+
+    public void clear(){
+        RealmDataSource dataSource = RealmDataSource.getDefault(BaseApplication.getContext());
+        Realm realm = dataSource.getRealm();
+        realm.removeAllChangeListeners();
     }
 }

@@ -18,6 +18,7 @@ import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.BottomBarTab;
 import com.wxj.mdnote.fragment.CategoryAdapter;
 import com.wxj.mdnote.fragment.NoteListAdapter;
+import com.wxj.mdnote.model.OnRealmChangeListener;
 import com.wxj.mdnote.model.entry.Account;
 import com.wxj.mdnote.model.entry.Note;
 import com.wxj.mdnote.presenter.NoteListPresenter;
@@ -33,7 +34,14 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
     private RecyclerView rv_running_task;
     private NoteListPresenter presenter;
     private BottomBar mBottomBar;
+    private NoteListAdapter noteListAdapter;
+    private List<Note> noteListAll;
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.clear();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,10 +89,11 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
 
 
     private void initRunningTaskRecyclerView() {
-        List<Note> all = presenter.findAll();
+        noteListAll = presenter.findAll();
         rv_running_task.setHasFixedSize(true);
-        rv_running_task.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
-        rv_running_task.setAdapter(new NoteListAdapter(this,all));
+        rv_running_task.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        noteListAdapter = new NoteListAdapter(this, noteListAll);
+        rv_running_task.setAdapter(noteListAdapter);
     }
 
     @Override
@@ -148,6 +157,13 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void createNewNote() {
         startActivity(new Intent(getBaseContext(), NoteCreateActivity.class));
+    }
+
+
+
+    @Override
+    public void notifyDataSetChange() {
+        noteListAdapter.notifyDataSetChanged();
     }
 
     @Override
