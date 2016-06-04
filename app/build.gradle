@@ -37,6 +37,10 @@ dependencies {
 
     compile 'com.android.support:cardview-v7:23.4.0'
     compile 'com.github.bumptech.glide:glide:3.7.0'
+    /*万能刷新*/
+//    compile 'com.github.recruit-lifestyle:WaveSwipeRefreshLayout:1.6'
+/*searchview*/
+//    compile 'com.miguelcatalan:materialsearchview:1.4.0'
     // 不要
 //    compile 'io.realm:android-adapters:1.2.1'
 }
