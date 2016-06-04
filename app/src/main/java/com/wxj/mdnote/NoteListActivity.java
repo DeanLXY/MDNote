@@ -18,7 +18,6 @@ import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.BottomBarTab;
 import com.wxj.mdnote.fragment.CategoryAdapter;
 import com.wxj.mdnote.fragment.NoteListAdapter;
-import com.wxj.mdnote.model.OnRealmChangeListener;
 import com.wxj.mdnote.model.entry.Account;
 import com.wxj.mdnote.model.entry.Note;
 import com.wxj.mdnote.presenter.NoteListPresenter;
@@ -28,6 +27,7 @@ import java.util.List;
 
 public class NoteListActivity extends AppCompatActivity implements View.OnClickListener, INoteListView, View.OnLongClickListener {
 
+    boolean isCategoryOpen = false;
     private FloatingActionButton fab;
     private RecyclerView rv_ruuning_category;
     private View overlay;
@@ -85,8 +85,8 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
 //         Instead of attach(), use attachShy():
         mBottomBar = BottomBar.attachShy((CoordinatorLayout) findViewById(R.id.main_content),
                 rv_running_task, savedInstanceState);
-    }
 
+    }
 
     private void initRunningTaskRecyclerView() {
         noteListAll = presenter.findAll();
@@ -105,7 +105,6 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
         mBottomBar.onSaveInstanceState(outState);
 
     }
-
 
     private void initRecyclerView() {
         rv_ruuning_category.setHasFixedSize(true);
@@ -130,13 +129,32 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
     }
 
     @Override
+    public void onBackPressed() {
+        if (isCategoryOpen) {
+            closeCategoryList();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
     public void onClick(View v) {
         if (v == overlay) {
-            FabTransformation.with(fab).setOverlay(overlay).transformFrom(rv_ruuning_category);
-        } else if (v == fab) {
+            closeCategoryList();
 
-            FabTransformation.with(fab).setOverlay(overlay).transformTo(rv_ruuning_category);
+        } else if (v == fab) {
+            openCategoryList();
         }
+    }
+
+    private void closeCategoryList() {
+        isCategoryOpen = false;
+        FabTransformation.with(fab).setOverlay(overlay).transformFrom(rv_ruuning_category);
+    }
+
+    private void openCategoryList() {
+        isCategoryOpen = true;
+        FabTransformation.with(fab).setOverlay(overlay).transformTo(rv_ruuning_category);
     }
 
     @Override
@@ -158,7 +176,6 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
     public void createNewNote() {
         startActivity(new Intent(getBaseContext(), NoteCreateActivity.class));
     }
-
 
 
     @Override
