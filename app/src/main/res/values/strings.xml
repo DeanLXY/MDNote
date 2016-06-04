@@ -13,4 +13,6 @@
     <string name="txt_note_subject_hint">标题</string>
     <string name="action_done">完成</string>
     <string name="txt_dialog_prompt">拼命加载中</string>
+    <string name="txt_welcome_back">欢迎回来!</string>
+    <string name="txt_welcome_prompt">首次使用.\n是否设置帐号?</string>
 </resources>

@@ -53,6 +53,7 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitle("");
         fab = (FloatingActionButton) findViewById(R.id.fab);
 
         rv_running_task = (RecyclerView) findViewById(R.id.rv_running_task);
@@ -67,6 +68,10 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
         fab.setOnLongClickListener(this);
 
 
+        initBottomBar(savedInstanceState);
+    }
+
+    private void initBottomBar(Bundle savedInstanceState) {
         mBottomBar = BottomBar.attach(this, savedInstanceState);
 //        mBottomBar.noTopOffset();
 //        mBottomBar.noNavBarGoodness();
@@ -74,18 +79,18 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
         mBottomBar.setItems(
                 new BottomBarTab(R.drawable.ic_restore_black_24dp, "Recents"),
                 new BottomBarTab(R.drawable.ic_person_black_24dp, "Favorites"),
-                new BottomBarTab(R.drawable.ic_person_black_24dp, "Favorites"),
+//                new BottomBarTab(R.drawable.ic_person_black_24dp, "Favorites"),
                 new BottomBarTab(R.drawable.ic_done_black_24dp, "Nearby")
         );
-        mBottomBar.mapColorForTab(0, ContextCompat.getColor(this, R.color.colorAccent));
-        mBottomBar.mapColorForTab(1, 0xFFFF0000);
-        mBottomBar.mapColorForTab(2, "#7B1FA2");
-        mBottomBar.mapColorForTab(3, 0xFFFF0000);
+        // 4个以上才有效果  源码加了判断
+//        mBottomBar.mapColorForTab(0, ContextCompat.getColor(this, R.color.colorAccent));
+//        mBottomBar.mapColorForTab(1, 0xFFFF0000);
+//        mBottomBar.mapColorForTab(2, "#7B1FA2");
+//        mBottomBar.mapColorForTab(3, 0xFFFF0000);
 
 //         Instead of attach(), use attachShy():
         mBottomBar = BottomBar.attachShy((CoordinatorLayout) findViewById(R.id.main_content),
                 rv_running_task, savedInstanceState);
-
     }
 
     private void initRunningTaskRecyclerView() {
@@ -144,6 +149,7 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
 
         } else if (v == fab) {
             openCategoryList();
+//            presenter.createNewNote();
         }
     }
 

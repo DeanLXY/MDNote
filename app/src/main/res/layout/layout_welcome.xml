@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge>
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:fitsSystemWindows="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardCornerRadius="2dp"
+        app:cardElevation="4dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_collapseMode="parallax">
+
+        <com.wxj.mdnote.view.Ratiolayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_tint_cover" />
+        </com.wxj.mdnote.view.Ratiolayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/rl_welcome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/tv_welcome_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:clickable="true"
+                    android:text="@string/txt_welcome_back"
+                    android:textColor="?attr/colorPrimary"
+                    android:textSize="24dp" />
+
+                <TextView
+                    android:id="@+id/tv_welcome_prompt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_welcome_back"
+                    android:layout_marginTop="24dp"
+                    android:clickable="true"
+                    android:lineSpacingMultiplier="1.4"
+                    android:minLines="5"
+                    android:text="@string/txt_welcome_prompt"
+                    android:textColor="@color/color_while" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl_welcome">
+
+                <View
+                    android:id="@+id/view_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/color_view_line" />
+
+
+                <android.support.percent.PercentRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/view_line">
+
+                    <TextView
+                        android:id="@+id/tv_no"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingBottom="8dp"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:paddingTop="8dp"
+                        android:text="No"
+                        android:textColor="@color/color_title"
+                        android:textSize="22dp"
+                        app:layout_widthPercent="20%" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/tv_no"
+                        android:gravity="center"
+                        android:paddingBottom="8dp"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:paddingTop="8dp"
+                        android:text="Yes"
+                        android:textColor="@color/color_txt_ok"
+                        android:textSize="22dp"
+                        app:layout_widthPercent="30%" />
+                </android.support.percent.PercentRelativeLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</merge>
