@@ -4,13 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    android:fitsSystemWindows="true"
     tools:context="com.wxj.mdnote.fragment.RunningFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_running_task"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
     <include layout="@layout/layout_category" />
 
 </FrameLayout>

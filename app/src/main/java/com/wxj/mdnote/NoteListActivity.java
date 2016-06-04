@@ -55,8 +55,7 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
         setSupportActionBar(toolbar);
         fab = (FloatingActionButton) findViewById(R.id.fab);
 
-
-        rv_running_task = (RecyclerView) (RecyclerView) findViewById(R.id.rv_running_task);
+        rv_running_task = (RecyclerView) findViewById(R.id.rv_running_task);
 
         initRunningTaskRecyclerView();
 
@@ -69,7 +68,8 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
 
 
         mBottomBar = BottomBar.attach(this, savedInstanceState);
-
+//        mBottomBar.noTopOffset();
+//        mBottomBar.noNavBarGoodness();
         // bottombar
         mBottomBar.setItems(
                 new BottomBarTab(R.drawable.ic_restore_black_24dp, "Recents"),
