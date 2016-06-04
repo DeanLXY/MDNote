@@ -2,6 +2,7 @@ package com.wxj.mdnote;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -15,10 +16,14 @@ import android.view.View;
 import com.konifar.fab_transformation.FabTransformation;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.BottomBarTab;
-import com.wxj.mdnote.fragment.RunningAdapter;
+import com.wxj.mdnote.fragment.CategoryAdapter;
+import com.wxj.mdnote.fragment.NoteListAdapter;
 import com.wxj.mdnote.model.entry.Account;
+import com.wxj.mdnote.model.entry.Note;
 import com.wxj.mdnote.presenter.NoteListPresenter;
 import com.wxj.mdnote.view.INoteListView;
+
+import java.util.List;
 
 public class NoteListActivity extends AppCompatActivity implements View.OnClickListener, INoteListView, View.OnLongClickListener {
 
@@ -44,6 +49,9 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
 
 
         rv_running_task = (RecyclerView) (RecyclerView) findViewById(R.id.rv_running_task);
+
+        initRunningTaskRecyclerView();
+
         rv_ruuning_category = (RecyclerView) findViewById(R.id.rv_ruuning_category);
         overlay = findViewById(R.id.overlay);
         initRecyclerView();
@@ -67,8 +75,16 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
         mBottomBar.mapColorForTab(3, 0xFFFF0000);
 
 //         Instead of attach(), use attachShy():
-//        mBottomBar = BottomBar.attachShy((CoordinatorLayout) findViewById(R.id.main_content),
-//                rv_running_task, savedInstanceState);
+        mBottomBar = BottomBar.attachShy((CoordinatorLayout) findViewById(R.id.main_content),
+                rv_running_task, savedInstanceState);
+    }
+
+
+    private void initRunningTaskRecyclerView() {
+        List<Note> all = presenter.findAll();
+        rv_running_task.setHasFixedSize(true);
+        rv_running_task.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
+        rv_running_task.setAdapter(new NoteListAdapter(this,all));
     }
 
     @Override
@@ -85,7 +101,7 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
     private void initRecyclerView() {
         rv_ruuning_category.setHasFixedSize(true);
         rv_ruuning_category.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-        rv_ruuning_category.setAdapter(new RunningAdapter(this));
+        rv_ruuning_category.setAdapter(new CategoryAdapter(this));
     }
 
     @Override

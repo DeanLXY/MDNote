@@ -4,9 +4,12 @@ import android.content.Context;
 
 import com.wxj.mdnote.IConstant;
 
+import io.realm.DynamicRealm;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import io.realm.RealmMigration;
 import io.realm.RealmObject;
+import io.realm.internal.Table;
 
 /**
  * ====================
@@ -30,6 +33,7 @@ public class RealmDataSource {
     private RealmDataSource(Context context) {
         RealmConfiguration config = new RealmConfiguration.Builder(context)
                 .name(IConstant.REALM_DB)
+                .deleteRealmIfMigrationNeeded()
                 .build();
         Realm.setDefaultConfiguration(config);
         realm = Realm.getDefaultInstance();

@@ -1,6 +1,10 @@
 package com.wxj.mdnote.presenter;
 
+import com.wxj.mdnote.model.NoteMode;
+import com.wxj.mdnote.model.entry.Note;
 import com.wxj.mdnote.view.INoteListView;
+
+import java.util.List;
 
 /**
  * ====================
@@ -15,10 +19,26 @@ import com.wxj.mdnote.view.INoteListView;
  */
 public class NoteListPresenter {
     private INoteListView view;
+    private final NoteMode mode;
 
     public NoteListPresenter(INoteListView view) {
         this.view = view;
+        mode = new NoteMode();
     }
+
+
+    public List<Note> findAll(){
+        return mode.findAll();
+    }
+
+    /**
+     * realm 中数据发发送改变的时候调用
+     */
+    public void onChange(){
+
+    }
+
+
 
     public void login() {
         view.requestUserInfo(null);

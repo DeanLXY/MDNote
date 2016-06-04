@@ -1,8 +1,8 @@
 package com.wxj.mdnote.model.entry;
 
-import android.provider.BaseColumns;
-
 import com.wxj.mdnote.utils.DateUtils;
+
+import java.util.UUID;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -23,11 +23,11 @@ import io.realm.annotations.RealmClass;
 public class Note extends RealmObject {
     // 创建  || 显示笔记的实体类
     @PrimaryKey
-    private String uuid;
+    private String uuid = UUID.randomUUID().toString();
 
     private String subject;
     private String content;
-    private String createTime= DateUtils.getCurrentTime(); //创建时间
+    private String createTime = DateUtils.getCurrentTime(); //创建时间
     private String lastModifyTime;//最后修改时间
 
     public String getLastModifyTime() {

@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.wxj.mdnote.R;
 import com.wxj.mdnote.model.entry.Category;
 
@@ -22,10 +21,10 @@ import com.wxj.mdnote.model.entry.Category;
  * @github https://github.com/wangxujie
  * @blog http://wangxujie.github.io
  */
-public class RunningAdapter extends RecyclerView.Adapter<RunningAdapter.RunningViewHolder> {
+public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.RunningViewHolder> {
     private Context context;
 
-    public RunningAdapter(Context context) {
+    public CategoryAdapter(Context context) {
         this.context = context;
     }
 
