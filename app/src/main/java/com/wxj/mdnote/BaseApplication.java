@@ -1,6 +1,7 @@
 package com.wxj.mdnote;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.wxj.mdnote.presenter.RealmDataSource;
 
@@ -16,9 +17,15 @@ import com.wxj.mdnote.presenter.RealmDataSource;
  * @blog http://wangxujie.github.io
  */
 public class BaseApplication extends Application {
+    private static Context context;
     @Override
     public void onCreate() {
         super.onCreate();
 
+        context = this;
+    }
+
+    public static Context getContext() {
+        return context;
     }
 }

@@ -11,4 +11,6 @@
     <string name="action_userinfo">用户</string>
     <string name="app_category_create">新分类</string>
     <string name="txt_note_subject_hint">标题</string>
+    <string name="action_done">完成</string>
+    <string name="txt_dialog_prompt">拼命加载中</string>
 </resources>

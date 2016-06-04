@@ -23,11 +23,16 @@ import io.realm.RealmObject;
 public class RealmDataSource {
     private final Realm realm;
 
+    public Realm getRealm() {
+        return realm;
+    }
+
     private RealmDataSource(Context context) {
         RealmConfiguration config = new RealmConfiguration.Builder(context)
                 .name(IConstant.REALM_DB)
                 .build();
-        realm = Realm.getInstance(config);
+        Realm.setDefaultConfiguration(config);
+        realm = Realm.getDefaultInstance();
     }
 
     private static RealmDataSource DEFAULT;
