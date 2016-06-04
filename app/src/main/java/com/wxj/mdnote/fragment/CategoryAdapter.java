@@ -40,6 +40,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Runnin
         Category category = Category.Default.categories.get(position);
         holder.textView.setText( category.toString());
         holder.ivIcon.setImageResource(category.getBg());
+        holder.ivBg.setImageResource(category.getBg2());
     }
 
     @Override
@@ -51,11 +52,13 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Runnin
 
         private final TextView textView;
         private final ImageView ivIcon;
+        private final ImageView ivBg;
 
         public RunningViewHolder(View view) {
             super(view);
             textView = (TextView) view.findViewById(R.id.tv_category_symbol);
             ivIcon = (ImageView) view.findViewById(R.id.iv_category_icon);
+            ivBg = (ImageView) view.findViewById(R.id.iv_category_bg);
         }
     }
 }

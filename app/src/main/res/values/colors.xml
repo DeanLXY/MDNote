@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#02BBD3</color>
-    <color name="colorPrimaryDark">#02a1b6</color>
-    <color name="colorAccent">#02BBD3</color>
+    <color name="colorPrimary">#1E8AE8</color>
+    <color name="colorPrimaryDark">#1975c6</color>
+    <color name="colorAccent">#1e8ae8</color>
     <color name="mask_color">#CCffffff</color>
     <color name="colorBackground">#E9EDF3</color>
     <color name="color_txt_subtitle">#AEAEAE</color>
@@ -10,4 +10,10 @@
     <color name="color_title">#0D0D0D</color>
     <color name="color_txt_ok">#FDC67E</color>
     <color name="color_while">#FFFFFF</color>
+    <color name="color_cover_red">#D5612F</color>
+    <color name="color_cover_qing">#99AD95</color>
+    <color name="color_cover_yellow">#FFDB6D</color>
+    <color name="color_cover_green">#84D0C4</color>
+    <color name="color_yellow">#FFCA28</color>
+    <color name="color_yellow_dark">#cfa421</color>
 </resources>

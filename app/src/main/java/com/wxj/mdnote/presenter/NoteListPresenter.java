@@ -1,6 +1,6 @@
 package com.wxj.mdnote.presenter;
 
-import com.wxj.mdnote.model.NoteMode;
+import com.wxj.mdnote.model.NoteModel;
 import com.wxj.mdnote.model.OnRealmChangeListener;
 import com.wxj.mdnote.model.entry.Note;
 import com.wxj.mdnote.view.INoteListView;
@@ -19,16 +19,16 @@ import java.util.List;
  * @blog http://wangxujie.github.io
  */
 public class NoteListPresenter {
+    private final NoteModel mode;
     private INoteListView view;
-    private final NoteMode mode;
 
     public NoteListPresenter(INoteListView view) {
         this.view = view;
-        mode = new NoteMode();
+        mode = new NoteModel();
     }
 
 
-    public List<Note> findAll(){
+    public List<Note> findAll() {
         return mode.findAll(new OnRealmChangeListener<List<Note>>() {
             @Override
             public void onChange(List<Note> notes) {
@@ -37,22 +37,20 @@ public class NoteListPresenter {
         });
     }
 
-    public void clear(){
+    public void clear() {
         mode.clear();
     }
-
-
 
 
     public void login() {
         view.requestUserInfo(null);
     }
 
-    public void createNewCategory(){
+    public void createNewCategory() {
         view.createNewCategory();
     }
 
-    public void createNewNote(){
+    public void createNewNote() {
         view.createNewNote();
     }
 

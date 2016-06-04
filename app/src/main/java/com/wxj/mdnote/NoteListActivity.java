@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -97,7 +96,34 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
         noteListAll = presenter.findAll();
         rv_running_task.setHasFixedSize(true);
         rv_running_task.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
-        noteListAdapter = new NoteListAdapter(this, noteListAll);
+        noteListAdapter = new NoteListAdapter(this, noteListAll){
+            @Override
+            public boolean onLongClick(View v) {
+                 startSupportActionMode(new android.support.v7.view.ActionMode.Callback() {
+                     @Override
+                     public boolean onCreateActionMode(android.support.v7.view.ActionMode mode, Menu menu) {
+                         mode.getMenuInflater().inflate(R.menu.menu_note_create,menu);
+                         return true;
+                     }
+
+                     @Override
+                     public boolean onPrepareActionMode(android.support.v7.view.ActionMode mode, Menu menu) {
+                         return false;
+                     }
+
+                     @Override
+                     public boolean onActionItemClicked(android.support.v7.view.ActionMode mode, MenuItem item) {
+                         return false;
+                     }
+
+                     @Override
+                     public void onDestroyActionMode(android.support.v7.view.ActionMode mode) {
+
+                     }
+                 });
+                return false;
+            }
+        };
         rv_running_task.setAdapter(noteListAdapter);
     }
 
@@ -186,6 +212,7 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void notifyDataSetChange() {
+
         noteListAdapter.notifyDataSetChanged();
     }
 

@@ -23,7 +23,7 @@ import java.util.List;
  * @github https://github.com/wangxujie
  * @blog http://wangxujie.github.io
  */
-public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.NoteListViewHolder> {
+public abstract class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.NoteListViewHolder> implements View.OnLongClickListener {
     private Context context;
     private List<Note> all;
 
@@ -35,6 +35,8 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.NoteLi
     @Override
     public NoteListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = View.inflate(context, R.layout.item_note, null);
+
+        view.setOnLongClickListener(this);
 
         return new NoteListViewHolder(view);
     }
@@ -60,6 +62,8 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.NoteLi
         return all.size();
     }
 
+    @Override
+    public abstract boolean onLongClick(View v) ;
 
     public class NoteListViewHolder extends RecyclerView.ViewHolder {
         private final TextView tvSubject;

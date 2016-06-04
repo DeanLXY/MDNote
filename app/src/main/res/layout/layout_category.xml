@@ -19,7 +19,7 @@
         <io.codetail.widget.RevealFrameLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_gravity="bottom"
+            android:layout_gravity="top"
             app:layout_heightPercent="80%"
             app:layout_widthPercent="100%">
 
@@ -27,7 +27,7 @@
                 android:id="@+id/rv_ruuning_category"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
+                android:layout_gravity="top"
                 android:visibility="invisible" />
         </io.codetail.widget.RevealFrameLayout>
     </android.support.percent.PercentFrameLayout>

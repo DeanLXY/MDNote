@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">天天记笔记</string>
+    <string name="app_name">MD-Note</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_ing">进行中</string>

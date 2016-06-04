@@ -4,12 +4,8 @@ import android.content.Context;
 
 import com.wxj.mdnote.IConstant;
 
-import io.realm.DynamicRealm;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
-import io.realm.RealmMigration;
-import io.realm.RealmObject;
-import io.realm.internal.Table;
 
 /**
  * ====================
@@ -24,11 +20,8 @@ import io.realm.internal.Table;
  */
 // Model: realm operate object
 public class RealmDataSource {
+    private static RealmDataSource DEFAULT;
     private final Realm realm;
-
-    public Realm getRealm() {
-        return realm;
-    }
 
     private RealmDataSource(Context context) {
         RealmConfiguration config = new RealmConfiguration.Builder(context)
@@ -39,13 +32,15 @@ public class RealmDataSource {
         realm = Realm.getDefaultInstance();
     }
 
-    private static RealmDataSource DEFAULT;
-
     public static synchronized RealmDataSource getDefault(Context context) {
         if (DEFAULT == null) {
             DEFAULT = new RealmDataSource(context);
         }
         return DEFAULT;
+    }
+
+    public Realm getRealm() {
+        return realm;
     }
 
 

@@ -3,6 +3,7 @@ package com.wxj.mdnote.model;
 import com.wxj.mdnote.BaseApplication;
 import com.wxj.mdnote.model.entry.Note;
 import com.wxj.mdnote.presenter.RealmDataSource;
+import com.wxj.mdnote.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ import io.realm.Sort;
  * @github https://github.com/wangxujie
  * @blog http://wangxujie.github.io
  */
-public class NoteMode {
+public class NoteModel {
 
     //  笔记的业务类
 
@@ -47,7 +48,9 @@ public class NoteMode {
         realm.addChangeListener(new RealmChangeListener<Realm>() {
             @Override
             public void onChange(Realm element) {
+                LogUtils.d("%s",">>>>>>>>>>>>onChange<<<<<<<<<<<<");
                 if (changeListener != null) {
+                    // remove
                     RealmQuery<Note> realmQuery = element.where(Note.class);
                     RealmResults<Note> all = realmQuery.findAllSorted("createTime", Sort.DESCENDING);
                     List<Note> notes = null;
@@ -70,9 +73,10 @@ public class NoteMode {
     }
 
 
-    public void clear(){
+    public void clear() {
         RealmDataSource dataSource = RealmDataSource.getDefault(BaseApplication.getContext());
         Realm realm = dataSource.getRealm();
         realm.removeAllChangeListeners();
+        realm.close();
     }
 }

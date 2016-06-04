@@ -1,6 +1,6 @@
 package com.wxj.mdnote.presenter;
 
-import com.wxj.mdnote.model.NoteMode;
+import com.wxj.mdnote.model.NoteModel;
 import com.wxj.mdnote.model.entry.Note;
 import com.wxj.mdnote.view.INoteCreateView;
 
@@ -17,11 +17,11 @@ import com.wxj.mdnote.view.INoteCreateView;
  */
 public class NoteCreatePresenter {
     INoteCreateView view;
-    private final NoteMode noteMode;
+    private final NoteModel noteMode;
 
     public NoteCreatePresenter(INoteCreateView view) {
         this.view = view;
-        noteMode = new NoteMode();
+        noteMode = new NoteModel();
     }
 
     public void createNewNote(){
