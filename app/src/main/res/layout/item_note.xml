@@ -75,11 +75,42 @@
             </LinearLayout>
 
 
+            <RelativeLayout
+                android:id="@+id/rl_note_action"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll_note_info"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/tv_note_action1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_favorite_black_24dp" />
+
+                <ImageView
+                    android:id="@+id/tv_note_action2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toRightOf="@id/tv_note_action1"
+                    android:src="@drawable/ic_share_black_24dp" />
+
+                <ImageView
+                    android:id="@+id/tv_note_action3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/ic_expand_more_black_24dp" />
+
+            </RelativeLayout>
+
             <View
                 android:id="@+id/view_line"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_below="@id/ll_note_info"
+                android:layout_below="@id/rl_note_action"
                 android:layout_toRightOf="@+id/iv_category_icon"
                 android:background="@color/color_view_line"
                 android:visibility="invisible" />
@@ -111,6 +142,7 @@
                 android:layout_below="@id/fl_category_content"
                 android:background="@color/color_view_line"
                 android:visibility="invisible" />
+
 
             <android.support.percent.PercentRelativeLayout
                 android:layout_width="match_parent"

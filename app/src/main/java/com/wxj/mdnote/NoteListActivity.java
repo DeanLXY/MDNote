@@ -2,6 +2,8 @@ package com.wxj.mdnote;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.BottomSheetDialog;
+import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -98,35 +100,19 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
         noteListAll = presenter.findAll();
         rv_running_task.setHasFixedSize(true);
         rv_running_task.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
-        noteListAdapter = new NoteListAdapter(this, noteListAll) {
+        noteListAdapter = new NoteListAdapter(this, noteListAll){
             @Override
-            public boolean onLongClick(View v) {
-                toolbar.startActionMode(new ActionMode.Callback() {
-                    @Override
-                    public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-                        mode.getMenuInflater().inflate(R.menu.menu_note_list,menu);
-                        return true;
-                    }
-
-                    @Override
-                    public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-                        return false;
-                    }
-
-                    @Override
-                    public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-                        return false;
-                    }
-
-                    @Override
-                    public void onDestroyActionMode(ActionMode mode) {
-
-                    }
-                });
-                return false;
+            protected void onInnerClick(Note note) {
+                showBottomSheet(note);
             }
         };
         rv_running_task.setAdapter(noteListAdapter);
+    }
+
+    private void showBottomSheet(Note note) {
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+        bottomSheetDialog.setContentView(R.layout.fragment_note_preview);
+        bottomSheetDialog.show();
     }
 
     @Override
@@ -141,7 +127,7 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
 
     private void initRecyclerView() {
         rv_ruuning_category.setHasFixedSize(true);
-        rv_ruuning_category.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        rv_ruuning_category.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
         rv_ruuning_category.setAdapter(new CategoryAdapter(this));
     }
 

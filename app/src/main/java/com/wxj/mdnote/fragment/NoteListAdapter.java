@@ -23,7 +23,7 @@ import java.util.List;
  * @github https://github.com/wangxujie
  * @blog http://wangxujie.github.io
  */
-public abstract class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.NoteListViewHolder> implements View.OnLongClickListener {
+public abstract class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.NoteListViewHolder> {
     private Context context;
     private List<Note> all;
 
@@ -36,23 +36,34 @@ public abstract class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapt
     public NoteListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = View.inflate(context, R.layout.item_note, null);
 
-        view.setOnLongClickListener(this);
-
         return new NoteListViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(NoteListViewHolder holder, int position) {
-        Note note = all.get(position);
+        final Note note = all.get(position);
         holder.tvSubject.setText(note.getSubject());
         holder.tvContent.setText(note.getContent());
-        if (note.getLastModifyTime() == null || "".equals(note.getLastModifyTime())){
+        if (note.getLastModifyTime() == null || "".equals(note.getLastModifyTime())) {
             holder.tvLastModifyTime.setText(note.getCreateTime());
-        }else{
+        } else {
             holder.tvLastModifyTime.setText(note.getLastModifyTime());
-
         }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+        onInnerClick(note);
+            }
+        });
+
     }
+
+    /**
+     * 条目点击事件
+     * @param note
+     */
+    protected abstract void onInnerClick(Note note);
+
 
     @Override
     public int getItemCount() {
@@ -62,8 +73,6 @@ public abstract class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapt
         return all.size();
     }
 
-    @Override
-    public abstract boolean onLongClick(View v) ;
 
     public class NoteListViewHolder extends RecyclerView.ViewHolder {
         private final TextView tvSubject;
