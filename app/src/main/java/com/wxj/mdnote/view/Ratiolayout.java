@@ -15,7 +15,7 @@ import com.wxj.mdnote.R;
  */
 public class Ratiolayout extends FrameLayout {
     // 宽高比例
-    float ratio = 2.43f; // 宽 / 高
+    float ratio = 1.78f; // 宽 / 高  16/9
 
     public float getRatio() {
         return ratio;

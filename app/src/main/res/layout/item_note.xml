@@ -1,130 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
     app:cardCornerRadius="2dp"
-
     app:cardElevation="4dp"
     app:cardPreventCornerOverlap="true"
     app:cardUseCompatPadding="true">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:background="@color/color_while">
+        android:orientation="vertical">
 
+        <com.wxj.mdnote.view.Ratiolayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/iv_category_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/accountbook_shortcut_benefit" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_account_category_cover" />
+        </com.wxj.mdnote.view.Ratiolayout>
 
-
-        <LinearLayout
-            android:id="@+id/ll_note_info"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_toRightOf="@+id/iv_category_icon"
-            android:orientation="vertical">
+            android:layout_marginBottom="8dp"
+            android:background="@color/color_while">
 
-            <TextView
-                android:id="@+id/tv_note_subject"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:lineSpacingMultiplier="1.2"
-                android:maxLines="2"
-                android:textColor="@color/color_title"
-                android:textSize="16dp"
-                android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/tv_note_last_modify_time"
-                style="?attr/textAppearanceListItem"
+            <ImageView
+                android:id="@+id/iv_category_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:textColor="@color/color_txt_subtitle" />
-        </LinearLayout>
+                android:scaleType="fitXY"
+                android:src="@drawable/accountbook_shortcut_benefit"
+                android:visibility="gone" />
 
 
-        <View
-            android:id="@+id/view_line"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@id/ll_note_info"
-            android:layout_toRightOf="@+id/iv_category_icon"
-            android:background="@color/color_view_line" />
-
-        <android.support.percent.PercentFrameLayout
-            android:id="@+id/fl_category_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/view_line"
-            android:layout_toRightOf="@+id/iv_category_icon">
-
-            <TextView
-                android:id="@+id/et_category_content"
+            <LinearLayout
+                android:id="@+id/ll_note_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp"
-                android:background="@null"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:text="xxxxxxx" />
-        </android.support.percent.PercentFrameLayout>
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_toRightOf="@+id/iv_category_icon"
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
 
-        <View
-            android:id="@+id/view_line1"
-            android:layout_width="match_parent"
-            android:layout_height="1dp" android:visibility="gone"
-            android:layout_below="@id/fl_category_content"
-            android:background="@color/color_view_line" />
+                <TextView
+                    android:id="@+id/tv_note_subject"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lineSpacingMultiplier="1.2"
+                    android:maxLines="2"
+                    android:textColor="@color/color_title"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
 
-        <android.support.percent.PercentRelativeLayout
-            android:layout_width="match_parent"
-            android:visibility="gone"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/fl_category_content"
-            android:layout_toRightOf="@id/iv_category_icon"
-            android:gravity="right">
+                <TextView
+                    android:id="@+id/tv_note_last_modify_time"
+                    style="?attr/textAppearanceListItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/color_txt_subtitle" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/tv_no"
-                android:layout_width="0dp"
+
+            <View
+                android:id="@+id/view_line"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/ll_note_info"
+                android:layout_toRightOf="@+id/iv_category_icon"
+                android:background="@color/color_view_line"
+                android:visibility="invisible" />
+
+            <android.support.percent.PercentFrameLayout
+                android:id="@+id/fl_category_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingBottom="8dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:paddingTop="8dp"
-                android:text="No"
-                android:textColor="@color/color_title"
-                android:textSize="22dp"
-                app:layout_widthPercent="30%" />
+                android:layout_below="@id/view_line"
+                android:layout_toRightOf="@+id/iv_category_icon"
+                android:paddingBottom="24dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="16dp">
 
-            <TextView
-                android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/et_category_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:ellipsize="end"
+                    android:text="xxxxxxx" />
+            </android.support.percent.PercentFrameLayout>
+
+            <View
+                android:id="@+id/view_line1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/fl_category_content"
+                android:background="@color/color_view_line"
+                android:visibility="invisible" />
+
+            <android.support.percent.PercentRelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/tv_no"
-                android:gravity="center"
-                android:paddingBottom="8dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:paddingTop="8dp"
-                android:text="Yes"
-                android:textColor="@color/color_txt_ok"
-                android:textSize="22dp"
-                app:layout_widthPercent="30%" />
-        </android.support.percent.PercentRelativeLayout>
-    </RelativeLayout>
-</FrameLayout>
+                android:layout_below="@id/fl_category_content"
+                android:layout_toRightOf="@id/iv_category_icon"
+                android:gravity="right"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_no"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingTop="8dp"
+                    android:text="No"
+                    android:textColor="@color/color_title"
+                    android:textSize="22dp"
+                    app:layout_widthPercent="30%" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/tv_no"
+                    android:gravity="center"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingTop="8dp"
+                    android:text="Yes"
+                    android:textColor="@color/color_txt_ok"
+                    android:textSize="22dp"
+                    app:layout_widthPercent="30%" />
+            </android.support.percent.PercentRelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

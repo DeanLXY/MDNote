@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,6 +36,7 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
     private BottomBar mBottomBar;
     private NoteListAdapter noteListAdapter;
     private List<Note> noteListAll;
+    private Toolbar toolbar;
 
     @Override
     protected void onDestroy() {
@@ -50,7 +52,7 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
         // ralm
         presenter = new NoteListPresenter(this);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle("");
         fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -96,31 +98,31 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
         noteListAll = presenter.findAll();
         rv_running_task.setHasFixedSize(true);
         rv_running_task.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
-        noteListAdapter = new NoteListAdapter(this, noteListAll){
+        noteListAdapter = new NoteListAdapter(this, noteListAll) {
             @Override
             public boolean onLongClick(View v) {
-                 startSupportActionMode(new android.support.v7.view.ActionMode.Callback() {
-                     @Override
-                     public boolean onCreateActionMode(android.support.v7.view.ActionMode mode, Menu menu) {
-                         mode.getMenuInflater().inflate(R.menu.menu_note_create,menu);
-                         return true;
-                     }
+                toolbar.startActionMode(new ActionMode.Callback() {
+                    @Override
+                    public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+                        mode.getMenuInflater().inflate(R.menu.menu_note_list,menu);
+                        return true;
+                    }
 
-                     @Override
-                     public boolean onPrepareActionMode(android.support.v7.view.ActionMode mode, Menu menu) {
-                         return false;
-                     }
+                    @Override
+                    public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+                        return false;
+                    }
 
-                     @Override
-                     public boolean onActionItemClicked(android.support.v7.view.ActionMode mode, MenuItem item) {
-                         return false;
-                     }
+                    @Override
+                    public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+                        return false;
+                    }
 
-                     @Override
-                     public void onDestroyActionMode(android.support.v7.view.ActionMode mode) {
+                    @Override
+                    public void onDestroyActionMode(ActionMode mode) {
 
-                     }
-                 });
+                    }
+                });
                 return false;
             }
         };
