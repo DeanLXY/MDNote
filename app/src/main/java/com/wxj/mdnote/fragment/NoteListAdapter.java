@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.wxj.mdnote.R;
+import com.wxj.mdnote.model.entry.Category;
 import com.wxj.mdnote.model.entry.Note;
 
 import java.util.List;
@@ -57,7 +58,7 @@ public abstract class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapt
             }
         });
 
-//        Glide.with(context).load(note.getCategory().getBg2()).into(holder.iv_note_cover);
+         holder.iv_note_cover.setImageResource(note.getIconCover());
     }
 
     /**

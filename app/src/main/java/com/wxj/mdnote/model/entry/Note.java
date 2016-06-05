@@ -30,16 +30,25 @@ public class Note extends RealmObject {
     private String content;
     private String createTime = DateUtils.getCurrentTime(); //创建时间
     private String lastModifyTime;//最后修改时间
-    @Ignore
-    private Category category;
 
 
-    public Category getCategory() {
-        return category;
+    public Integer iconCover;//封面
+    public String categoryName; //分类
+
+    public Integer getIconCover() {
+        return iconCover;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setIconCover(Integer iconCover) {
+        this.iconCover = iconCover;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public String getLastModifyTime() {

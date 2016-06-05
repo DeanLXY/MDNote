@@ -35,9 +35,6 @@ public class NoteModel {
         Realm realm = dataSource.getRealm();
         realm.beginTransaction();
         realm.copyToRealm(note);
-        Category category = note.getCategory();
-        category.setUuid(note.getUuid());
-        realm.copyToRealm(category);
         realm.commitTransaction();
     }
 
@@ -69,13 +66,13 @@ public class NoteModel {
         });
         RealmQuery<Note> realmQuery = realm.where(Note.class);
         RealmResults<Note> all = realmQuery.findAllSorted("createTime", Sort.DESCENDING);
-        Note note;
-        for (int i = 0; i < all.size(); i++) {
-            note = all.get(i);
-            RealmQuery<Category> categoryRealmQuery = realm.where(Category.class).equalTo("uuid", note.getUuid());
-            Category category = categoryRealmQuery.findFirst();
-            note.setCategory(category);
-        }
+//        Note note;
+//        for (int i = 0; i < all.size(); i++) {
+//            note = all.get(i);
+//            RealmQuery<Category> categoryRealmQuery = realm.where(Category.class).equalTo("uuid", note.getUuid());
+//            Category category = categoryRealmQuery.findFirst();
+//            note.setCategory(category);
+//        }
         return all;
     }
 

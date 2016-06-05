@@ -157,8 +157,8 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
             closeCategoryList();
 
         } else if (v == fab) {
-            openCategoryList();
-//            presenter.createNewNote();
+//            openCategoryList();
+            presenter.createNewNote();
         }
     }
 
