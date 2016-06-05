@@ -5,6 +5,7 @@ import com.wxj.mdnote.utils.DateUtils;
 import java.util.UUID;
 
 import io.realm.RealmObject;
+import io.realm.annotations.Ignore;
 import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.RealmClass;
 
@@ -29,6 +30,17 @@ public class Note extends RealmObject {
     private String content;
     private String createTime = DateUtils.getCurrentTime(); //创建时间
     private String lastModifyTime;//最后修改时间
+    @Ignore
+    private Category category;
+
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
     public String getLastModifyTime() {
         return lastModifyTime;

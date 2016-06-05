@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.wxj.mdnote.R;
 import com.wxj.mdnote.model.entry.Note;
 
@@ -40,7 +41,7 @@ public abstract class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapt
     }
 
     @Override
-    public void onBindViewHolder(NoteListViewHolder holder, int position) {
+    public void onBindViewHolder(final NoteListViewHolder holder, int position) {
         final Note note = all.get(position);
         holder.tvSubject.setText(note.getSubject());
         holder.tvContent.setText(note.getContent());
@@ -52,14 +53,16 @@ public abstract class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapt
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-        onInnerClick(note);
+                onInnerClick(note);
             }
         });
 
+//        Glide.with(context).load(note.getCategory().getBg2()).into(holder.iv_note_cover);
     }
 
     /**
      * 条目点击事件
+     *
      * @param note
      */
     protected abstract void onInnerClick(Note note);
@@ -73,12 +76,15 @@ public abstract class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapt
         return all.size();
     }
 
-
     public class NoteListViewHolder extends RecyclerView.ViewHolder {
         private final TextView tvSubject;
         private final ImageView ivIcon;
         private final TextView tvContent;
         private final TextView tvLastModifyTime;
+        private final View actionFavorite;
+        private final View actionExpand;
+        private final View actionShare;
+        private final ImageView iv_note_cover;
 
         public NoteListViewHolder(View view) {
             super(view);
@@ -86,6 +92,16 @@ public abstract class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapt
             tvLastModifyTime = (TextView) view.findViewById(R.id.tv_note_last_modify_time);
             tvContent = (TextView) view.findViewById(R.id.et_category_content);
             ivIcon = (ImageView) view.findViewById(R.id.iv_category_icon);
+            iv_note_cover= (ImageView) view.findViewById(R.id.iv_note_cover);
+
+
+
+            // action
+            actionFavorite = view.findViewById(R.id.iv_note_action1);
+            actionShare = view.findViewById(R.id.iv_note_action2);
+            actionExpand = view.findViewById(R.id.iv_note_action3);
+
+
         }
     }
 }

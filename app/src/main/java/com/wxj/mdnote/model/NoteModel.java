@@ -1,6 +1,7 @@
 package com.wxj.mdnote.model;
 
 import com.wxj.mdnote.BaseApplication;
+import com.wxj.mdnote.model.entry.Category;
 import com.wxj.mdnote.model.entry.Note;
 import com.wxj.mdnote.presenter.RealmDataSource;
 import com.wxj.mdnote.utils.LogUtils;
@@ -34,6 +35,9 @@ public class NoteModel {
         Realm realm = dataSource.getRealm();
         realm.beginTransaction();
         realm.copyToRealm(note);
+        Category category = note.getCategory();
+        category.setUuid(note.getUuid());
+        realm.copyToRealm(category);
         realm.commitTransaction();
     }
 
@@ -42,34 +46,37 @@ public class NoteModel {
      *
      * @return
      */
-    public List<Note> findAll(final OnRealmChangeListener<List<Note>> changeListener) {
+    public RealmResults<Note> findAll(final OnRealmChangeListener<List<Note>> changeListener) {
         RealmDataSource dataSource = RealmDataSource.getDefault(BaseApplication.getContext());
         Realm realm = dataSource.getRealm();
         realm.addChangeListener(new RealmChangeListener<Realm>() {
             @Override
             public void onChange(Realm element) {
-                LogUtils.d("%s",">>>>>>>>>>>>onChange<<<<<<<<<<<<");
+                LogUtils.d("%s", ">>>>>>>>>>>>onChange<<<<<<<<<<<<");
                 if (changeListener != null) {
                     // remove
-                    RealmQuery<Note> realmQuery = element.where(Note.class);
+                  /*  RealmQuery<Note> realmQuery = element.where(Note.class);
                     RealmResults<Note> all = realmQuery.findAllSorted("createTime", Sort.DESCENDING);
                     List<Note> notes = null;
                     if (all == null || all.size() == 0) {
                         notes = new ArrayList<>();
                     } else {
                         notes = all.subList(0, all.size() - 1);
-                    }
-                    changeListener.onChange(notes);
+                    }*/
+                    changeListener.onChange(null);
                 }
             }
         });
         RealmQuery<Note> realmQuery = realm.where(Note.class);
         RealmResults<Note> all = realmQuery.findAllSorted("createTime", Sort.DESCENDING);
-
-        if (all == null || all.size() == 0) {
-            return new ArrayList<>();
+        Note note;
+        for (int i = 0; i < all.size(); i++) {
+            note = all.get(i);
+            RealmQuery<Category> categoryRealmQuery = realm.where(Category.class).equalTo("uuid", note.getUuid());
+            Category category = categoryRealmQuery.findFirst();
+            note.setCategory(category);
         }
-        return all.subList(0, all.size() - 1);
+        return all;
     }
 
 

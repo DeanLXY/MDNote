@@ -1,5 +1,7 @@
 package com.wxj.mdnote.view;
 
+import com.wxj.mdnote.model.entry.Category;
+
 /**
  * ====================
  * 版权所有 违法必究
@@ -20,6 +22,9 @@ public interface INoteCreateView {
 
     // 笔记内容信息
     public String getContent();
+
+    // 分类
+    public Category getCategory();
 
     public void showProgress();
 

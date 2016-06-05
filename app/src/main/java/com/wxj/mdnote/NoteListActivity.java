@@ -2,15 +2,12 @@ package com.wxj.mdnote;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.BottomSheetDialog;
-import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
-import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -43,7 +40,7 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        presenter.clear();
+//        presenter.clear();
     }
 
     @Override
@@ -92,8 +89,8 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
 //        mBottomBar.mapColorForTab(3, 0xFFFF0000);
 
 //         Instead of attach(), use attachShy():
-        mBottomBar = BottomBar.attachShy((CoordinatorLayout) findViewById(R.id.main_content),
-                rv_running_task, savedInstanceState);
+//        mBottomBar = BottomBar.attachShy((CoordinatorLayout) findViewById(R.id.main_content),
+//                findViewById(R.id.ns), savedInstanceState);
     }
 
     private void initRunningTaskRecyclerView() {
@@ -110,9 +107,7 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void showBottomSheet(Note note) {
-        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
-        bottomSheetDialog.setContentView(R.layout.fragment_note_preview);
-        bottomSheetDialog.show();
+
     }
 
     @Override

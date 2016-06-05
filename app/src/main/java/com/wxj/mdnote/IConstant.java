@@ -13,5 +13,5 @@ package com.wxj.mdnote;
  */
 public interface IConstant {
     //  realm's name
-    public final static String  REALM_DB = "note_category.realm";
+    public final static String  REALM_DB = "note.realm";
 }

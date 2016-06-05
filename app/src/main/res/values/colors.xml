@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#1E8AE8</color>
-    <color name="colorPrimaryDark">#b11525</color>
+    <color name="colorPrimaryDark">#196db7</color>
     <color name="colorAccent">#1e8ae8</color>
     <color name="mask_color">#CCffffff</color>
     <color name="colorBackground">#E9EDF3</color>
@@ -16,4 +16,7 @@
     <color name="color_cover_green">#84D0C4</color>
     <color name="color_yellow">#FFCA28</color>
     <color name="color_yellow_dark">#cfa421</color>
+
+    <color name="text_color_primary">#212121</color>
+    <color name="text_second_color_primary">#727272</color>
 </resources>

@@ -5,13 +5,13 @@
     android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context="com.wxj.mdnote.NoteListActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <!-- <android.support.design.widget.CollapsingToolbarLayout
@@ -33,6 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:layout_collapseMode="pin"
+            app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
         <!--app:layout_scrollFlags="scroll|enterAlways"-->
 
@@ -41,25 +42,25 @@
  -->
     </android.support.design.widget.AppBarLayout>
 
+
     <include layout="@layout/fragment_running" />
 
-<!--    <include
-        android:id="@+id/rl_bottom_sheet"
-        layout="@layout/fragment_note_preview"
-        app:behavior_peekHeight="@dimen/peek_height" />-->
+    <!--    <include
+            android:id="@+id/rl_bottom_sheet"
+            layout="@layout/fragment_note_preview"
+            app:behavior_peekHeight="@dimen/peek_height" />-->
 
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="right|bottom"
         android:layout_margin="@dimen/fab_margin"
-        android:clickable="true"
         android:src="@drawable/ic_create_black_24dp"
         app:backgroundTint="@color/color_yellow"
         app:borderWidth="0dp"
         app:elevation="4dp"
-        app:layout_anchor="@id/rl_bottom_sheet"
         app:layout_anchorGravity="top|end"
         app:rippleColor="@color/color_yellow_dark" />
     <!--app:layout_anchor="@id/appbar"-->

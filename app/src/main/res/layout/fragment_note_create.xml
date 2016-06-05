@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.wxj.mdnote.fragment.NoteCreateFragment">
 
@@ -12,17 +11,34 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.wxj.mdnote.view.Ratiolayout
-            android:id="@+id/rl_note_cover"
+        <RelativeLayout
+            android:id="@+id/rl_note_bg_picker"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground">
+
+            <com.wxj.mdnote.view.Ratiolayout
+                android:id="@+id/rl_note_cover"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv_note_cover"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_tint_cover_qing" />
+            </com.wxj.mdnote.view.Ratiolayout>
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackground"
-                android:scaleType="centerCrop" />
-        </com.wxj.mdnote.view.Ratiolayout>
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:paddingBottom="16dp"
+                android:paddingRight="16dp"
+                android:src="@drawable/ic_camera_alt_black_24dp" />
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,19 +46,38 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <android.support.design.widget.TextInputLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/et_subject"
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/til_note_subject"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/txt_note_subject_hint"
-                    android:textColor="#000"
-                    android:textColorHint="@color/color_txt_subtitle"
-                    android:textSize="24dp" />
-            </android.support.design.widget.TextInputLayout>
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/et_subject"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/txt_note_subject_hint"
+                        android:textColor="#000"
+                        android:textColorHint="@color/color_txt_subtitle"
+                        android:textSize="24dp" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.percent.PercentRelativeLayout
+                    android:layout_width="match_parent"
+                    android:paddingTop="16dp"
+                    android:layout_height="wrap_content">
+
+                    <android.support.v7.widget.AppCompatSpinner
+                        android:id="@+id/spinner_note_category"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_widthPercent="50%" />
+                </android.support.percent.PercentRelativeLayout>
+            </LinearLayout>
 
             <FrameLayout
                 android:layout_width="match_parent"

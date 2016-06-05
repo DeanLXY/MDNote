@@ -28,6 +28,8 @@ public class NoteCreatePresenter {
         Note note = new Note();
         note.setSubject(view.getSubject());
         note.setContent(view.getContent());
+        note.setCategory(view.getCategory());
         noteMode.createNewNote(note);
+        view.finish();
     }
 }

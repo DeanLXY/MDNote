@@ -4,6 +4,7 @@ import com.wxj.mdnote.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -23,8 +24,10 @@ import io.realm.annotations.RealmClass;
 
 @RealmClass
 public class Category extends RealmObject {
-    private Integer bg2;
     @PrimaryKey
+    private String uuid = UUID.randomUUID().toString();
+    private Integer bg2;
+
     private String title; //title
     private String symbol;//  symbol ##  @@ %%...
     private Integer bg;
@@ -37,6 +40,14 @@ public class Category extends RealmObject {
         this.symbol = "##$1%s##";
         this.bg = bg;
         this.bg2 = bg2;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 
     public Integer getBg() {
