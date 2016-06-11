@@ -17,12 +17,15 @@ import android.view.View;
 
 import com.konifar.fab_transformation.FabTransformation;
 import com.roughike.bottombar.BottomBar;
-import com.wxj.mdnote.fragment.CategoryAdapter;
-import com.wxj.mdnote.fragment.NoteListAdapter;
-import com.wxj.mdnote.model.entry.Account;
-import com.wxj.mdnote.model.entry.Note;
-import com.wxj.mdnote.presenter.NoteListPresenter;
-import com.wxj.mdnote.view.INoteListView;
+import com.wxj.mdnote.cpf.CitySupportActivity;
+import com.wxj.mdnote.note.fragment.CategoryAdapter;
+import com.wxj.mdnote.note.fragment.NoteListAdapter;
+import com.wxj.mdnote.note.CategoryCreateActivity;
+import com.wxj.mdnote.note.NoteCreateActivity;
+import com.wxj.mdnote.note.model.entity.Account;
+import com.wxj.mdnote.note.model.entity.Note;
+import com.wxj.mdnote.note.presenter.NoteListPresenter;
+import com.wxj.mdnote.note.view.INoteListView;
 
 import java.util.List;
 
@@ -198,7 +201,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        drawerLayout.closeDrawer(Gravity.START);
+        if (item.getItemId() == R.id.action_other){
+            startActivity(new Intent(getBaseContext(),CitySupportActivity.class));
+        }
+
+
+
+        drawerLayout.closeDrawer(Gravity.LEFT);
         return true;
     }
 }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:poplar="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.wxj.mdnote.view.FancyIndexer
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        poplar:additionalTipOffset="40dip"
+        poplar:fontColor="#ffa0a0a0"
+        poplar:maxBezierHeight="150dip"
+        poplar:maxBezierWidth="180dip"
+        poplar:maxFontSize="60"
+        poplar:minFontSize="32"
+        poplar:tipFontSize="72"
+        poplar:widthOffset="15dip" />
+
+</RelativeLayout>

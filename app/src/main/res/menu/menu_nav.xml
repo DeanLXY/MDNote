@@ -15,6 +15,13 @@
             android:icon="@drawable/ic_action_account_svg"
             android:title="用户信息" />
     </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/action_other"
+            android:icon="@drawable/ic_restore_black_24dp"
+            android:title="其他接入" />
+
+    </group>
 
     <item android:title="Communicate">
         <menu>

@@ -3,8 +3,6 @@ package com.wxj.mdnote;
 import android.app.Application;
 import android.content.Context;
 
-import com.wxj.mdnote.presenter.RealmDataSource;
-
 /**
  * ====================
  * 版权所有 违法必究

@@ -28,13 +28,7 @@
                      android:scaleType="centerCrop"
                      android:src="@drawable/ic_account_category_cover" />-->
         <!--<include layout="@layout/layout_welcome" />-->
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:layout_collapseMode="pin"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+        <include layout="@layout/layout_toolbar" />
         <!--app:layout_scrollFlags="scroll|enterAlways"-->
 
 

@@ -30,7 +30,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.roughike:bottom-bar:1.3.4'
     compile 'com.android.support:appcompat-v7:23.4.0'
@@ -39,18 +39,21 @@ dependencies {
     compile 'com.android.support:support-v4:23.4.0'
     compile 'com.android.support:recyclerview-v7:23.4.0'
     compile 'com.android.support:percent:23.2.1'
-
     compile 'com.android.support:cardview-v7:23.4.0'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     /*万能刷新*/
-//    compile 'com.github.recruit-lifestyle:WaveSwipeRefreshLayout:1.6'
-/*searchview*/
-//    compile 'com.miguelcatalan:materialsearchview:1.4.0'
+    //    compile 'com.github.recruit-lifestyle:WaveSwipeRefreshLayout:1.6'
+    /*searchview*/
+    //    compile 'com.miguelcatalan:materialsearchview:1.4.0'
     // 不要
-//    compile 'io.realm:android-adapters:1.2.1'
+    //    compile 'io.realm:android-adapters:1.2.1'
     compile 'io.reactivex:rxjava:1.1.3'
     compile 'io.reactivex:rxandroid:1.1.0'
     compile 'com.squareup.retrofit2:retrofit:2.0.1'
     compile 'com.squareup.retrofit2:converter-gson:2.0.1'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.0.1'
+    //快速索引
+//    compile 'xyz.danoz:recyclerviewfastscroller:0.1.3'
+    compile 'org.greenrobot:greendao:2.2.1'
+    compile 'org.greenrobot:greendao-generator:2.2.0'
 }
