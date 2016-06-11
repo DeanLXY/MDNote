@@ -16,12 +16,11 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.konifar.fab_transformation.FabTransformation;
-import com.roughike.bottombar.BottomBar;
 import com.wxj.mdnote.cpf.CitySupportActivity;
-import com.wxj.mdnote.note.fragment.CategoryAdapter;
-import com.wxj.mdnote.note.fragment.NoteListAdapter;
 import com.wxj.mdnote.note.CategoryCreateActivity;
 import com.wxj.mdnote.note.NoteCreateActivity;
+import com.wxj.mdnote.note.fragment.CategoryAdapter;
+import com.wxj.mdnote.note.fragment.NoteListAdapter;
 import com.wxj.mdnote.note.model.entity.Account;
 import com.wxj.mdnote.note.model.entity.Note;
 import com.wxj.mdnote.note.presenter.NoteListPresenter;
@@ -37,7 +36,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private View overlay;
     private RecyclerView rv_running_task;
     private NoteListPresenter presenter;
-    private BottomBar mBottomBar;
     private NoteListAdapter noteListAdapter;
     private List<Note> noteListAll;
     private Toolbar toolbar;
@@ -201,10 +199,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_other){
-            startActivity(new Intent(getBaseContext(),CitySupportActivity.class));
+        if (item.getItemId() == R.id.action_other) {
+            startActivity(new Intent(getBaseContext(), CitySupportActivity.class));
         }
-
 
 
         drawerLayout.closeDrawer(Gravity.LEFT);

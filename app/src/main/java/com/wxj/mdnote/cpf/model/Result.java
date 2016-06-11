@@ -3,7 +3,7 @@ package com.wxj.mdnote.cpf.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class CityCPF {
+public class Result {
 
     @SerializedName("city")
     @Expose
@@ -31,7 +31,7 @@ public class CityCPF {
     private Integer subdl;
     @SerializedName("timestamp")
     @Expose
-    private Integer timestamp;
+    private Long timestamp;
 
     /**
      * @return The city
@@ -148,14 +148,14 @@ public class CityCPF {
     /**
      * @return The timestamp
      */
-    public Integer getTimestamp() {
+    public Long getTimestamp() {
         return timestamp;
     }
 
     /**
      * @param timestamp The timestamp
      */
-    public void setTimestamp(Integer timestamp) {
+    public void setTimestamp(Long timestamp) {
         this.timestamp = timestamp;
     }
 

@@ -3,7 +3,7 @@
 请求方式：GET
 {
 	"reason":"查询成功",
-	"cityCPF":[
+	"result":[
 		{
 			"city":"shanghai",
 			"cname":"上海",

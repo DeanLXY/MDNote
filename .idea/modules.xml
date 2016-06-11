@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MDNote.iml" filepath="$PROJECT_DIR$/MDNote.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/cpfLib/cpfapp.iml" filepath="$PROJECT_DIR$/cpfLib/cpfapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cpfLib/cpfLib.iml" filepath="$PROJECT_DIR$/cpfLib/cpfLib.iml" />
     </modules>
   </component>
 </project>

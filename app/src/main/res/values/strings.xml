@@ -19,6 +19,7 @@
     <string name="openDrawerContentDescRes">打开</string>
     <string name="closeDrawerContentDescRes">关闭抽屉</string>
     <string name="app_note_create">新笔记</string>
+    <string name="txt_click_retry">点击重试</string>
     <string-array name="camera_picture_picker">
         <item>相机</item>
         <item>图库</item>

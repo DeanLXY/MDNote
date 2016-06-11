@@ -9,7 +9,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+
+    <TextView
+        android:id="@+id/tv_again"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:autoLink="all"
+        android:clickable="true"
+        android:text="@string/txt_click_retry"
+        android:visibility="gone" />
+
     <com.wxj.mdnote.view.FancyIndexer
+        android:id="@+id/fancyindex"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         poplar:additionalTipOffset="40dip"
@@ -20,5 +32,14 @@
         poplar:minFontSize="32"
         poplar:tipFontSize="72"
         poplar:widthOffset="15dip" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="invisible" />
 
 </RelativeLayout>
