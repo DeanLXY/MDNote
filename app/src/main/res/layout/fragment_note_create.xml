@@ -55,9 +55,9 @@
                     android:id="@+id/til_note_subject"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:errorEnabled="true"
                     app:counterEnabled="true"
-                    app:counterMaxLength="@integer/note_title_max_length">
+                    app:counterMaxLength="@integer/note_title_max_length"
+                    app:errorEnabled="true">
 
                     <EditText
                         android:id="@+id/et_subject"
@@ -72,7 +72,8 @@
                 <android.support.percent.PercentRelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="16dp">
+                    android:paddingTop="16dp"
+                    android:visibility="gone">
 
                     <android.support.v7.widget.AppCompatSpinner
                         android:id="@+id/spinner_note_category"

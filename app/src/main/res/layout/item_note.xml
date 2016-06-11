@@ -6,8 +6,7 @@
     android:foreground="?android:attr/selectableItemBackground"
     app:cardCornerRadius="2dp"
     app:cardElevation="2dp"
-    app:cardUseCompatPadding="true"
->
+    app:cardUseCompatPadding="true">
     <!--app:cardPreventCornerOverlap="true"-->
 
     <LinearLayout
@@ -16,9 +15,9 @@
         android:orientation="vertical">
 
         <com.wxj.mdnote.view.Ratiolayout
-            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:visibility="gone">
 
             <ImageView
                 android:id="@+id/iv_note_cover"
@@ -63,12 +62,10 @@
                     android:lineSpacingMultiplier="1.2"
                     android:maxLines="2"
                     android:textColor="@color/color_title"
-                    android:textSize="16dp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tv_note_last_modify_time"
-                    style="?attr/textAppearanceListItem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -87,13 +84,13 @@
                     android:id="@+id/iv_note_action1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     android:src="@drawable/ic_favorite_black_24dp" />
 
                 <ImageView
                     android:id="@+id/iv_note_action2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
                     android:layout_toRightOf="@id/iv_note_action1"
                     android:src="@drawable/ic_share_black_24dp" />
 
@@ -135,54 +132,9 @@
                     android:background="@null"
                     android:ellipsize="end"
 
-                    android:text="xxxxxxx" />
+                    />
             </android.support.percent.PercentFrameLayout>
 
-
-            <!--  <View
-                  android:id="@+id/view_line1"
-                  android:layout_width="match_parent"
-                  android:layout_height="1dp"
-                  android:layout_below="@id/toogle_expand_layout"
-                  android:background="@color/color_view_line"
-                  android:visibility="invisible" />-->
-            <!--
-                        <android.support.percent.PercentRelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/toogle_expand_layout"
-                            android:layout_toRightOf="@id/iv_category_icon"
-                            android:gravity="right"
-                            android:visibility="gone">
-
-                            <TextView
-                                android:id="@+id/tv_no"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:paddingBottom="8dp"
-                                android:paddingLeft="20dp"
-                                android:paddingRight="20dp"
-                                android:paddingTop="8dp"
-                                android:text="No"
-                                android:textColor="@color/color_title"
-                                android:textSize="22dp"
-                                app:layout_widthPercent="30%" />
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_toRightOf="@id/tv_no"
-                                android:gravity="center"
-                                android:paddingBottom="8dp"
-                                android:paddingLeft="20dp"
-                                android:paddingRight="20dp"
-                                android:paddingTop="8dp"
-                                android:text="Yes"
-                                android:textColor="@color/color_txt_ok"
-                                android:textSize="22dp"
-                                app:layout_widthPercent="30%" />
-                        </android.support.percent.PercentRelativeLayout>-->
         </RelativeLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>

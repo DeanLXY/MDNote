@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void initRunningTaskRecyclerView() {
         noteListAll = presenter.findAll();
         rv_running_task.setHasFixedSize(true);
-        rv_running_task.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
+        rv_running_task.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         noteListAdapter = new NoteListAdapter(this, noteListAll) {
             @Override
             protected void onInnerClick(Note note) {
