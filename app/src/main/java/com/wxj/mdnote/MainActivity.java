@@ -2,19 +2,21 @@ package com.wxj.mdnote;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.konifar.fab_transformation.FabTransformation;
 import com.roughike.bottombar.BottomBar;
-import com.roughike.bottombar.BottomBarTab;
 import com.wxj.mdnote.fragment.CategoryAdapter;
 import com.wxj.mdnote.fragment.NoteListAdapter;
 import com.wxj.mdnote.model.entry.Account;
@@ -24,7 +26,7 @@ import com.wxj.mdnote.view.INoteListView;
 
 import java.util.List;
 
-public class NoteListActivity extends AppCompatActivity implements View.OnClickListener, INoteListView, View.OnLongClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, INoteListView, View.OnLongClickListener, NavigationView.OnNavigationItemSelectedListener {
 
     boolean isCategoryOpen = false;
     private FloatingActionButton fab;
@@ -36,6 +38,8 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
     private NoteListAdapter noteListAdapter;
     private List<Note> noteListAll;
     private Toolbar toolbar;
+    private NavigationView navigationView;
+    private DrawerLayout drawerLayout;
 
     @Override
     protected void onDestroy() {
@@ -46,18 +50,17 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_note_list);
-
+        setContentView(R.layout.activity_main);
         // ralm
         presenter = new NoteListPresenter(this);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setTitle("");
+        toolbar.setTitle("笔记");
         fab = (FloatingActionButton) findViewById(R.id.fab);
-
         rv_running_task = (RecyclerView) findViewById(R.id.rv_running_task);
-
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
+        navigationView = (NavigationView) findViewById(R.id.navigation_view);
         initRunningTaskRecyclerView();
 
         rv_ruuning_category = (RecyclerView) findViewById(R.id.rv_ruuning_category);
@@ -67,58 +70,43 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
         fab.setOnClickListener(this);
         fab.setOnLongClickListener(this);
 
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this,
+                drawerLayout,
+                toolbar,
+                R.string.openDrawerContentDescRes,
+                R.string.closeDrawerContentDescRes) {
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                fab.hide();
+            }
 
-        initBottomBar(savedInstanceState);
-    }
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+                fab.show();
+            }
+        };
 
-    private void initBottomBar(Bundle savedInstanceState) {
-        mBottomBar = BottomBar.attach(this, savedInstanceState);
-//        mBottomBar.noTopOffset();
-//        mBottomBar.noNavBarGoodness();
-        // bottombar
-        mBottomBar.setItems(
-                new BottomBarTab(R.drawable.ic_restore_black_24dp, "Recents"),
-                new BottomBarTab(R.drawable.ic_person_black_24dp, "Favorites"),
-//                new BottomBarTab(R.drawable.ic_person_black_24dp, "Favorites"),
-                new BottomBarTab(R.drawable.ic_done_black_24dp, "Nearby")
-        );
-        // 4个以上才有效果  源码加了判断
-//        mBottomBar.mapColorForTab(0, ContextCompat.getColor(this, R.color.colorAccent));
-//        mBottomBar.mapColorForTab(1, 0xFFFF0000);
-//        mBottomBar.mapColorForTab(2, "#7B1FA2");
-//        mBottomBar.mapColorForTab(3, 0xFFFF0000);
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
 
-//         Instead of attach(), use attachShy():
-//        mBottomBar = BottomBar.attachShy((CoordinatorLayout) findViewById(R.id.main_content),
-//                findViewById(R.id.ns), savedInstanceState);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     private void initRunningTaskRecyclerView() {
         noteListAll = presenter.findAll();
         rv_running_task.setHasFixedSize(true);
         rv_running_task.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
-        noteListAdapter = new NoteListAdapter(this, noteListAll){
+        noteListAdapter = new NoteListAdapter(this, noteListAll) {
             @Override
             protected void onInnerClick(Note note) {
-                showBottomSheet(note);
+
             }
         };
         rv_running_task.setAdapter(noteListAdapter);
     }
 
-    private void showBottomSheet(Note note) {
-
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-
-        // Necessary to restore the BottomBar's state, otherwise we would
-        // lose the current tab on orientation change.
-        mBottomBar.onSaveInstanceState(outState);
-
-    }
 
     private void initRecyclerView() {
         rv_ruuning_category.setHasFixedSize(true);
@@ -206,5 +194,11 @@ public class NoteListActivity extends AppCompatActivity implements View.OnClickL
             presenter.createNewNote();
         }
         return false;
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        drawerLayout.closeDrawer(Gravity.START);
+        return true;
     }
 }

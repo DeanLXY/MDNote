@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.wxj.mdnote.NoteListActivity">
+    tools:context=".MainActivity"
+    tools:showIn="@layout/activity_main">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -15,17 +16,17 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <!-- <android.support.design.widget.CollapsingToolbarLayout
-             android:id="@+id/colltoolbar"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             app:contentScrim="?attr/colorPrimary"
-             app:layout_scrollFlags="scroll|enterAlways|exitUntilCollapsed|snap">&ndash;&gt;
-
-             <ImageView
-                 android:layout_width="wrap_content"
+                 android:id="@+id/colltoolbar"
+                 android:layout_width="match_parent"
                  android:layout_height="wrap_content"
-                 android:scaleType="centerCrop"
-                 android:src="@drawable/ic_account_category_cover" />-->
+                 app:contentScrim="?attr/colorPrimary"
+                 app:layout_scrollFlags="scroll|enterAlways|exitUntilCollapsed|snap">&ndash;&gt;
+    
+                 <ImageView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:scaleType="centerCrop"
+                     android:src="@drawable/ic_account_category_cover" />-->
         <!--<include layout="@layout/layout_welcome" />-->
 
         <android.support.v7.widget.Toolbar
@@ -33,22 +34,21 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:layout_collapseMode="pin"
-            app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
         <!--app:layout_scrollFlags="scroll|enterAlways"-->
 
 
         <!-- </android.support.design.widget.CollapsingToolbarLayout>
- -->
+     -->
     </android.support.design.widget.AppBarLayout>
 
 
     <include layout="@layout/fragment_running" />
 
     <!--    <include
-            android:id="@+id/rl_bottom_sheet"
-            layout="@layout/fragment_note_preview"
-            app:behavior_peekHeight="@dimen/peek_height" />-->
+                android:id="@+id/rl_bottom_sheet"
+                layout="@layout/fragment_note_preview"
+                app:behavior_peekHeight="@dimen/peek_height" />-->
 
 
     <android.support.design.widget.FloatingActionButton

@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".NoteListActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
@@ -23,19 +23,19 @@
         <activity
             android:name=".CategoryCreateActivity"
             android:label="@string/app_category_create"
-            android:parentActivityName=".NoteListActivity">
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".NoteListActivity" />
+                android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".NoteCreateActivity"
-            android:parentActivityName=".NoteListActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".NoteListActivity" />
+                android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".SplashActivity"

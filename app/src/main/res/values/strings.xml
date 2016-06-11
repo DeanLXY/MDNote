@@ -16,6 +16,8 @@
     <string name="txt_welcome_back">欢迎回来!</string>
     <string name="txt_welcome_prompt">首次使用.\n是否设置帐号?</string>
     <string name="picture_choice">图片选择</string>
+    <string name="openDrawerContentDescRes">打开</string>
+    <string name="closeDrawerContentDescRes">关闭抽屉</string>
     <string-array name="camera_picture_picker">
         <item>相机</item>
         <item>图库</item>
