@@ -73,6 +73,7 @@ public class CitySuppoertPresenter {
 
                     @Override
                     public void onError(Throwable e) {
+                        view.hidePrompt();
                         view.showErrorView();
                     }
 

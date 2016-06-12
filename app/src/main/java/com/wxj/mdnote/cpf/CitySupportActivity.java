@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -17,7 +17,6 @@ import com.wxj.mdnote.cpf.view.ICityListView;
 import com.wxj.mdnote.view.FancyIndexer;
 
 import java.util.List;
-import java.util.Random;
 
 import rx.Observable;
 import rx.functions.Action1;
@@ -27,7 +26,7 @@ public class CitySupportActivity extends AppCompatActivity implements ICityListV
 
     private static final String TAG = CitySupportActivity.class.getSimpleName();
     private ProgressBar progressBar;
-    private TextView textView;
+    private Button btnAgain;
     private CitySuppoertPresenter presenter;
     private RecyclerView recyclerView;
     private FancyIndexer fancyIndexer;
@@ -40,7 +39,7 @@ public class CitySupportActivity extends AppCompatActivity implements ICityListV
         setContentView(R.layout.activity_city_support);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        textView = (TextView) findViewById(R.id.tv_again);
+        btnAgain = (Button) findViewById(R.id.btn_again);
         fancyIndexer = (FancyIndexer) findViewById(R.id.fancyindex);
         fancyIndexer.setOnTouchLetterChangedListener(this);
         presenter = new CitySuppoertPresenter(this);
@@ -61,12 +60,12 @@ public class CitySupportActivity extends AppCompatActivity implements ICityListV
 
     @Override
     public void showErrorView() {
-        textView.setVisibility(View.VISIBLE);
+        btnAgain.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideErrorVIew() {
-        textView.setVisibility(View.GONE);
+        btnAgain.setVisibility(View.GONE);
     }
 
     @Override
@@ -117,28 +116,29 @@ public class CitySupportActivity extends AppCompatActivity implements ICityListV
                         int index = 0;
                         for (int i = 0; i < cities.size(); i++) {
                             Result result = cities.get(i);
-                            if (s.equalsIgnoreCase(result.getCity().charAt(0)+"")){
+                            if (s.equalsIgnoreCase(result.getCity().charAt(0) + "")) {
                                 index = i;
                                 break;
                             }
                         }
-                        Log.d(TAG, "call: index = "+index);
+                        Log.d(TAG, "call: index = " + index);
                         return index;
                     }
                 })
                 .map(new Func1<Integer, Integer>() {
                     @Override
-                    public Integer call(Integer integer) {
+                    public Integer call(Integer index) {
                         // index ---->position
-                        return integer;
+                        View view = linearLayoutManager.findViewByPosition(index);
+                        int top = view.getTop();
+                        return top;
                     }
                 })
                 .subscribe(new Action1<Integer>() {
                     @Override
-                    public void call(Integer index) {
-                        View view = linearLayoutManager.findViewByPosition(index);
-                        int top = view.getTop();
-                        linearLayoutManager.scrollToPosition(index);
+                    public void call(Integer position) {
+
+                        linearLayoutManager.scrollToPosition(position);
                     }
                 });
     }
