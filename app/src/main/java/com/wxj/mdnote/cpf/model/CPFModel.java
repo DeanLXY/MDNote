@@ -34,9 +34,7 @@ public class CPFModel {
 //        } else {
         Retrofit retrofit = RetrofitUtil.getRetrofit(CPFAPI.CPF_BASE_URL);
         final CPFAPI CPFAPI = retrofit.create(CPFAPI.class);
-        return CPFAPI.getCities(CPFAPI.CPF_APP_KEY)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+        return CPFAPI.getCities(CPFAPI.CPF_APP_KEY);
 //        }
 
 

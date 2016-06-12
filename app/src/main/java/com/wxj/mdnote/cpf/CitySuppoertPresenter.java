@@ -1,12 +1,7 @@
 package com.wxj.mdnote.cpf;
 
-import android.database.sqlite.SQLiteDatabase;
-
 import com.wxj.cpfapp.CityCPF;
 import com.wxj.cpfapp.CityCPFDao;
-import com.wxj.cpfapp.DaoMaster;
-import com.wxj.cpfapp.DaoSession;
-import com.wxj.mdnote.BaseApplication;
 import com.wxj.mdnote.cpf.model.CPFCityModel;
 import com.wxj.mdnote.cpf.model.CPFModel;
 import com.wxj.mdnote.cpf.model.Result;
@@ -19,8 +14,10 @@ import java.util.List;
 
 import rx.Observable;
 import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
 /**
  * ====================
@@ -47,6 +44,8 @@ public class CitySuppoertPresenter {
 
     public void getCities() {
         model.getCities()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(new Action0() {
                     @Override
                     public void call() {
